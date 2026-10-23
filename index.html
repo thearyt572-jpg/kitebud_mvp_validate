@@ -1,0 +1,1165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Major Match Survey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Kantumruy+Pro:wght@400;500;600;700&display=swap">
+<style>
+/* Cute, calm, phone-first: cream background with soft dots, rounded cards, pink accent, orange cat mascot */
+:root{
+  --bg:#FFF7F0; --surface:#FFFFFF; --ink:#3A2E4D; --muted:#7D7290; --line:#F1E3D9;
+  --accent:#F06A8F; --accent-2:#FFA97A; --accent-ink:#FFFFFF; --accent-soft:#FFE3EB;
+  --mint:#DDF6EC; --mint-ink:#1F7A5C; --lav:#EEE9FF; --sun:#FFF1C7; --warn:#C2571B;
+  --shadow:0 4px 0 rgba(240,106,143,.10), 0 10px 26px rgba(58,46,77,.06);
+  --fur:#F7B267; --fur-dark:#E3893F; --cream:#FFF4E6; --cat-pink:#FF9EB5; --cat-ink:#3A2E4D;
+  --font:"Kantumruy Pro","Noto Sans Khmer",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:"Fredoka","Kantumruy Pro","Noto Sans Khmer",system-ui,sans-serif;
+  --r:22px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1E1A2B; --surface:#2A2440; --ink:#F4EEFA; --muted:#B9AFCC; --line:#3A3252;
+  --accent:#FF8FB0; --accent-2:#FFB48F; --accent-ink:#2A1420; --accent-soft:#48293D;
+  --mint:#1E3A33; --mint-ink:#8FE3C3; --lav:#322A4C; --sun:#433A22; --warn:#F2A06B;
+  --shadow:0 4px 0 rgba(0,0,0,.25), 0 10px 26px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1E1A2B; --surface:#2A2440; --ink:#F4EEFA; --muted:#B9AFCC; --line:#3A3252;
+  --accent:#FF8FB0; --accent-2:#FFB48F; --accent-ink:#2A1420; --accent-soft:#48293D;
+  --mint:#1E3A33; --mint-ink:#8FE3C3; --lav:#322A4C; --sun:#433A22; --warn:#F2A06B;
+  --shadow:0 4px 0 rgba(0,0,0,.25), 0 10px 26px rgba(0,0,0,.25); color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background-color:var(--bg);background-image:radial-gradient(var(--line) 1.3px,transparent 1.3px);background-size:22px 22px;
+  color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+html[lang="km"] body{line-height:1.8}
+.wrap{max-width:600px;margin:0 auto;padding-block:0 56px}
+header{position:sticky;top:0;z-index:5;background:var(--bg);padding-top:max(12px,env(safe-area-inset-top,0px));padding-bottom:12px;display:grid;gap:10px}
+.brand{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand b{font-family:var(--display);font-weight:700;font-size:20px;color:var(--accent);letter-spacing:.01em}
+.brand .right{display:flex;align-items:center;gap:10px}
+.brand .stepTxt{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.langbtn{appearance:none;font:inherit;font-size:13px;font-weight:600;border:2px solid var(--line);background:var(--surface);color:var(--ink);
+  border-radius:99px;padding:4px 12px;cursor:pointer;min-height:34px}
+.bar{position:relative;height:10px;border-radius:99px;background:var(--accent-soft);margin-right:14px}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .4s}
+.bar .thumb{position:absolute;top:50%;width:30px;height:30px;transform:translate(-50%,-55%);transition:left .4s}
+.preview{font-size:13px;color:var(--warn);border:2px dashed var(--warn);border-radius:12px;padding:6px 10px}
+main{display:grid;gap:18px}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance}
+h1{font-size:27px;line-height:1.25;margin:6px 0 0}
+h2{font-size:22px;line-height:1.3;margin:2px 0 0}
+html[lang="km"] h1,html[lang="km"] h2{line-height:1.6}
+.eyebrow{display:inline-flex;align-self:start;justify-self:start;font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);
+  padding:4px 12px;border-radius:99px;letter-spacing:.02em}
+p{margin:0;max-width:65ch}
+.muted{color:var(--muted)}
+.card{background:var(--surface);border:2px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:12px;box-shadow:var(--shadow)}
+.q{display:grid;gap:8px}
+.q>label,.q>.lab{font-weight:600}
+ul.plain{margin:0;padding-left:0;list-style:none;display:grid;gap:8px}
+ul.plain li{display:flex;gap:10px}
+ul.plain li::before{content:"🐾";flex:none;font-size:14px;line-height:1.7}
+a{color:var(--accent);font-weight:600}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{appearance:none;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:15px;
+  padding:9px 15px;border-radius:99px;cursor:pointer;min-height:44px;text-align:left;transition:border-color .15s,background .15s}
+.pill:hover{border-color:var(--accent)}
+.pill[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.pill.pop{animation:pop .28s ease-out}
+@keyframes pop{0%{transform:scale(.9)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
+.pill:focus-visible,.btn:focus-visible,.langbtn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.scale .pill{padding:6px 2px;text-align:center;font-size:12.5px;border-radius:16px;min-height:52px;display:grid;place-items:center;gap:0;line-height:1.3}
+.scale .emo{font-size:20px;line-height:1.2}
+.scale4{grid-template-columns:repeat(4,1fr)}
+.grade{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.grade .pill{padding:8px 2px;text-align:center;font-size:13px;border-radius:14px}
+.item{display:grid;gap:10px;padding-block:14px;border-top:2px dashed var(--line)}
+.item:first-child{border-top:0;padding-top:0}
+.item p{font-weight:500}
+.ends{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+input[type=text],input[type=tel],input[type=search],select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--surface);
+  border:2px solid var(--line);border-radius:14px;padding:10px 14px}
+textarea{min-height:90px;resize:vertical}
+.check{display:flex;gap:10px;align-items:flex-start}
+.check input{width:22px;height:22px;margin-top:3px;accent-color:var(--accent);flex:none}
+.nav{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:4px}
+.btn{appearance:none;font:inherit;font-weight:600;border-radius:99px;padding:12px 22px;cursor:pointer;border:2px solid var(--line);
+  background:var(--surface);color:var(--ink);min-height:50px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);margin-left:auto;box-shadow:0 4px 0 rgba(0,0,0,.12)}
+.btn.primary:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.12)}
+.err{color:var(--warn);font-size:14px;font-weight:500}
+.counter{font-variant-numeric:tabular-nums;font-size:14px;color:var(--muted)}
+.counter b{color:var(--accent);font-size:16px}
+/* Job picker */
+.search{position:relative}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted)}
+.search input{padding-left:42px}
+.tray{display:flex;flex-wrap:wrap;gap:8px;padding:12px;border-radius:16px;background:var(--accent-soft);min-height:52px;align-items:center}
+.tray .pill{background:var(--surface);border-color:var(--accent);font-size:14px;min-height:36px;padding:5px 12px}
+.tray .x{margin-left:6px;color:var(--accent);font-weight:700}
+.cats{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.cats .pill{flex:none;font-size:14px;min-height:38px;padding:6px 13px;background:var(--lav);border-color:transparent}
+.cats .pill[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.listHead{font-size:13px;font-weight:600;color:var(--muted)}
+/* Personality */
+.ab{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{background:var(--lav);border-radius:16px;padding:10px 12px;display:flex;gap:8px;align-items:flex-start;font-size:14.5px}
+.opt .badge{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:13px;
+  background:var(--surface);color:var(--accent)}
+.opt.b{background:var(--mint)}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice .pill{border-radius:18px;padding:14px;font-weight:600;display:grid;gap:4px;text-align:left}
+.choice .pill small{font-weight:400;font-size:13px;opacity:.85}
+.tip{background:var(--sun);border-radius:16px;padding:12px 14px;font-size:14px;display:flex;gap:10px}
+.tip::before{content:"💡";flex:none}
+/* Section explainer */
+.info{border:2px dashed var(--line);border-radius:18px;padding:12px 14px;display:grid;gap:8px;font-size:14px;color:var(--muted);background:color-mix(in srgb,var(--surface) 60%,transparent)}
+.info .hd{font-family:var(--display);font-weight:600;font-size:13px;color:var(--accent)}
+.info .row{display:flex;gap:10px;align-items:flex-start}
+.info .row>span:first-child{flex:none;width:20px;text-align:center}
+.info b{color:var(--ink);font-weight:600}
+/* Consent sections */
+.sec h3{margin:0;font-size:18px}
+/* Field picker */
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fields .pill{border-radius:16px;display:grid;gap:2px;padding:10px 12px;font-weight:600}
+.fields .pill small{font-weight:400;font-size:12.5px;opacity:.8}
+.fields .pill.wide{grid-column:1/-1}
+/* Results */
+.result{display:grid;gap:12px}
+.rank{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.rank h3{margin:0;font-size:20px}
+.rank .big{font-family:var(--display);font-size:30px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.medal{font-size:22px;margin-right:4px}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.metric{background:var(--bg);border-radius:14px;padding:8px 10px;display:grid;gap:2px}
+.metric span{font-size:12px;color:var(--muted)}
+.metric b{font-size:17px;font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--muted)}
+.code{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.code .lab{font-size:13px;color:var(--muted);margin-right:4px}
+.tag{font-size:13px;padding:4px 11px;border-radius:99px;background:var(--accent-soft);color:var(--ink);font-weight:500}
+.tag.m{background:var(--mint);color:var(--mint-ink)}
+/* Prizes */
+.prizes{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.prize{background:var(--sun);border-radius:18px;padding:14px;display:grid;gap:2px;text-align:center}
+.prize .ic{font-size:30px}
+.prize b{font-family:var(--display);font-size:16px}
+.prize span{font-size:13px;color:var(--muted)}
+/* Language screen + mascot */
+.center{display:grid;justify-items:center;text-align:center;gap:16px;padding-top:10px}
+.langs{display:grid;gap:12px;width:100%;max-width:360px}
+.langs .btn{width:100%;font-size:18px;display:grid;gap:0;padding:14px}
+.langs .btn small{font-weight:400;font-size:13px;opacity:.8}
+.langs .btn.primary{margin-left:0}
+.mascot{position:relative;display:grid;justify-items:center}
+.bubble{position:relative;background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:8px 16px;font-family:var(--display);
+  font-weight:600;font-size:18px;color:var(--accent);box-shadow:var(--shadow);margin-bottom:6px;animation:bob 2.4s ease-in-out infinite}
+.bubble::after{content:"";position:absolute;left:50%;bottom:-9px;width:14px;height:14px;background:var(--surface);border-right:2px solid var(--line);
+  border-bottom:2px solid var(--line);transform:translateX(-50%) rotate(45deg)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.cat .blink{transform-box:fill-box;transform-origin:center;animation:blink 4.5s infinite}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.cat .wave{transform-box:fill-box;transform-origin:0% 100%;animation:wave 1.1s ease-in-out infinite}
+@keyframes wave{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(16deg)}}
+.cat .tail{transform-box:fill-box;transform-origin:0% 100%;animation:sway 2.6s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(0)}50%{transform:rotate(-10deg)}}
+.hearts{position:absolute;inset:0;pointer-events:none}
+.hearts span{position:absolute;bottom:30%;color:var(--accent);font-size:18px;opacity:0;animation:float 3.2s ease-in infinite}
+.hearts span:nth-child(1){left:12%;animation-delay:0s}
+.hearts span:nth-child(2){left:80%;animation-delay:1s;font-size:14px}
+.hearts span:nth-child(3){left:25%;animation-delay:2s;font-size:13px}
+.hearts span:nth-child(4){left:70%;animation-delay:.5s}
+@keyframes float{0%{transform:translateY(0) scale(.8);opacity:0}20%{opacity:1}100%{transform:translateY(-120px) scale(1.1);opacity:0}}
+.gif{max-width:240px;width:100%;border-radius:20px}
+@media (max-width:440px){
+  .metrics{grid-template-columns:1fr 1fr}
+  .ab,.choice{grid-template-columns:1fr}
+  .fields{grid-template-columns:1fr}
+  h1{font-size:24px}
+  .scale .pill{font-size:11.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  .bar i,.bar .thumb{transition:none}
+  .pill.pop,.bubble,.cat .blink,.cat .wave,.cat .tail,.hearts span{animation:none}
+  .hearts{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><b>Major Match</b><div class="right"><span class="stepTxt" id="step"></span><button type="button" class="langbtn" id="langBtn" data-act="lang" hidden></button></div></div>
+    <div class="bar" aria-hidden="true"><i id="prog" style="width:0%"></i>
+      <svg class="thumb" id="thumb" viewBox="0 0 40 40" style="left:0%"><path d="M7 16 L5 3 L16 10 Z M33 16 L35 3 L24 10 Z" fill="var(--fur)"/><ellipse cx="20" cy="21" rx="15" ry="13" fill="var(--fur)"/><circle cx="14.5" cy="20" r="2" fill="var(--cat-ink)"/><circle cx="25.5" cy="20" r="2" fill="var(--cat-ink)"/><path d="M18.5 24 h3 l-1.5 1.8 z" fill="#E86A8A"/></svg>
+    </div>
+    <div class="preview" id="previewNote" hidden></div>
+  </header>
+  <main id="app" aria-live="polite"></main>
+</div>
+
+<script>
+/* ===== Settings: edit before hosting ===== */
+const CONFIG = {
+  ENDPOINT: "https://script.google.com/macros/s/AKfycbyRj2YYa2MCoSebtEA7k6zv1sgeRpzLJNsiHeNxS5Ozfp-dSZpdHG4zQHmG9PM_-lO2/exec",
+  FORMULA_VERSION: "2.1",
+  CONTACT: "",      // optional: email or Telegram shown on the first page for questions. Leave empty to hide.
+  CLOSE_DATE: "01/11/2026",
+  DRAW_DATE: "05/11/2026",
+  DRAW_PAGE: "Kitebud",
+  MIN_SECONDS: 270,
+  FULL_TEST_URL: "https://www.16personalities.com",
+  FULL_TEST_NAME: "16Personalities",
+  THANKS_GIF: "",   // optional: URL of your own thank-you GIF. Leave empty to show the built-in animated cat.
+  /* Gifts for the lucky draw: change names, counts and icons to your real prizes */
+  PRIZES: [
+    {qty:1, icon:"🎧", en:"AirPods", km:"AirPods"},
+    {qty:3, icon:"🧸", en:"Plush toy", km:"តុក្កតា"},
+    {qty:6, icon:"🎁", en:"Surprise gift", km:"កាដូអាថ៌កំបាំង"}
+  ]
+};
+
+/* ===== Interface text: [English, Khmer] ===== */
+const STR = {
+  step:["Step {a} of {b}","ជំហាន {a} នៃ {b}"],
+  preview:["Answers are scored on this page for the further evaluation","ចម្លើយត្រូវបានគណនានៅលើទំព័រនេះ ហើយត្រូវបានរក្សាទុកដោយក្រុមនិស្សិតសម្រាប់ការវាយតម្លៃ។"],
+  next:["Next","បន្ទាប់"], back:["Back","ថយក្រោយ"], start:["Let's start","ចាប់ផ្តើម"], seeResults:["See my results","មើលលទ្ធផល"], finish:["Finish","បញ្ចប់"],
+  otherLang:["ខ្មែរ","English"],
+  yes:["Yes","បាទ/ចាស"], no:["No","ទេ"], notSure:["Not sure","មិនប្រាកដ"], somewhat:["Somewhat","បន្តិចបន្តួច"], choose:["Choose…","ជ្រើសរើស…"], other:["Other","ផ្សេងទៀត"],
+  hi:["Hello! សួស្តី!","Hello! សួស្តី!"],
+  // consent
+  cEyebrow:["Kitebud research survey · about 12 minutes","ការស្ទង់មតិស្រាវជ្រាវរបស់ Kitebud · ប្រហែល ១២ នាទី"],
+  cTitle:["Help us make choosing a major less confusing","ជួយយើងធ្វើឱ្យការជ្រើសរើសជំនាញកាន់តែងាយស្រួល"],
+  whoH:["Who we are?","យើងជានរណា?"],
+  who:["We're Kitebud, a small group getting a small seed to develop our Idea into a real life solution. We're building a website that helps high-school students choose a university major with less confusion and less time spent searching.",
+       "ពួកយើងគឺ Kitebud ជាក្រុមនិស្សិតដែលទទួលបានកញ្ចប់ថវិការតូចមួយដើម្បីអភិវឌ្ឍន៍ផលិតផករបស់យើងទៅជា​ការពិតក្នុងគោលបំណងជួយដល់សហគមន៏។ យើងកំពុងបង្កើតគេហទំព័រ ដើម្បីជួយសិស្សវិទ្យាល័យជ្រើសរើសជំនាញនៅសាកលវិទ្យាល័យ ដោយមានភាពងាយស្រួល និងចំណាយពេលស្វែងរកព័ត៍មានពីជំនាញតិចជាងមុន។"],
+  whyH:["Why we're doing this","ហេតុអ្វីយើងបង្កើតផលិតផលនេះ"],
+  why1:["Switching major costs money, and costs students a year or more before they find what they really like.",
+        "ការប្តូរជំនាញធ្វើឱ្យខាតថវិកា ហើយធ្វើឱ្យនិស្សិតខាតពេលមួយឆ្នាំ ឬច្រើនជាងនេះ មុននឹងរកឃើញអ្វីដែលខ្លួនចូលចិត្តពិតប្រាកដ។"],
+  why2:["We don't claim to solve the problem. What we can do is give students a clearer starting point, based on what they enjoy, who they are and what they're good at.",
+        "ការបង្កើតឡើងរបស់ពួកយើងមិនមានគោលបំណងអះអាងថាអាចដោះស្រាយបញ្ហានេះបានទាំងស្រុងទេ។ អ្វីដែលយើងអាចធ្វើបាន គឺផ្តល់ឱ្យសិស្សនូវចំណុចចាប់ផ្តើមដែលច្បាស់ជាងមុន ដោយផ្អែកលើអ្វីដែលពួកគេចូលចត្ត បុគ្គលិកលក្ខណៈរបស់ពួកគេ និងអ្វីដែលពួកគេពូកែ។"],
+  doIt:["There are 7 short parts and it takes about 12 minutes: your dream job or field, everyday activities, deal-breakers, personality, school results and skills.",
+        "នៅក្នុងនេះមាន ៧ ផ្នែកខ្លីៗ ហើយចំណាយពេលប្រហែល ១២ នាទី៖ ដែរមានការងារក្នុងក្តីស្រមៃ ឬវិស័យ សកម្មភាពប្រចាំថ្ងៃ អ្វីដែលអ្នកមិនចូលចិត្តធ្វើ បុគ្គលិកលក្ខណៈ លទ្ធផលសិក្សា និងជំនាញ។"],
+  dataH:["Your data and your permission","ទិន្នន័យ និងការយល់ព្រមរបស់អ្នក"],
+  cCollect:["We save your answers, how long the survey took, your language and whether you used a phone or computer.",
+            "យើងរក្សាទុកចម្លើយរបស់អ្នក រយៈពេលដែលអ្នកប្រើក្នុងការឆ្លើយ ភាសាដែលអ្នកជ្រើសរើស និងថាតើអ្នកប្រើទូរស័ព្ទ ឬកុំព្យូទ័រ។"],
+  cUse:["Only the Kitebud team sees the answers. We use them to test and improve the tool, and we report only group results (for example, “7 in 10 students…”), never one person's answers.",
+        "មានតែក្រុមការងារ Kitebud ប៉ុណ្ណោះដែលអាចមើលឃើញចម្លើយ។ យើងប្រើវាដើម្បីសាកល្បង និងកែលម្អឧបករណ៍ ហើយផ្ដល់តែជាលទ្ធផលរួមប៉ុណ្ណោះ (ឧទាហរណ៍ “និស្សិត ៧ ក្នុងចំណោម ១០ នាក់…”) មិនបង្ហាញចម្លើយរបស់បុគ្គលណាម្នាក់ឡើយ។"],
+  cContact:["Questions? Contact us our team lead 0977244733.","មានសំណួរ? សូមទាក់ទងយើងតាមរយៈ 0977244733។"],
+  cIntro:["We're building Major Match, a tool that helps high-school students choose a university major. This survey checks whether our questions match people with the majors they already enjoy.",
+          "យើងកំពុងបង្កើត Major Match ដែលជាឧបករណ៍ ជួយសិស្សវិទ្យាល័យជ្រើសរើសជំនាញនៅសាកលវិទ្យាល័យ។ ការស្ទង់មតិនេះពិនិត្យមើលថា តើសំណួររបស់យើងអាចផ្គូផ្គងមនុស្សទៅនឹងជំនាញដែលពួកគេពេញចិត្តរួចហើយឬទេ។"],
+  c1:["There are no right or wrong answers.","គ្មានចម្លើយត្រូវ ឬខុសទេ។"],
+  c2:["We don't ask for your name, and your answers aren't linked to who you are.","យើងមិនសួររកឈ្មោះរបស់អ្នកទេ ហើយចម្លើយរបស់អ្នកមិនភ្ជាប់ទៅនឹងអត្តសញ្ញាណរបស់អ្នកឡើយ។"],
+  c3:["At the end you'll see your own top 3 majors.","នៅចុងបញ្ចប់ អ្នកនឹងឃើញជំនាញដែលសាកសមជាមួយអ្នកចំនួន ៣។"],
+  c4:["<b>Lucky draw:</b> win gifts from us. Entries close on 01/11/2026; the draw is streamed live on our Facebook page KiteBud on 05/11/2026.","<b>ចាប់រង្វាន់សំណាង៖</b> ឈ្នះ រង្វាន់។ ផុតកំណត់ចូលរួម 01/11/2026។ ការចាប់រង្វាន់ផ្សាយផ្ទាល់នៅលើ គេហទំព័រ Facebook KiteBud នៅថ្ងៃទី 05/11/2026។"],
+  c5:["If you join the draw, your phone or Telegram is stored separately from your answers and deleted after the gifts are delivered.","ប្រសិនបើអ្នកចូលរួមចាប់រង្វាន់ លេខទូរស័ព្ទ ឬ Telegram របស់អ្នកត្រូវបានរក្សាទុកដោយឡែកពីចម្លើយរបស់អ្នក ហើយត្រូវបានលុបចោលបន្ទាប់ពីផ្តល់កាដូរទៅអ្នក។"],
+  c6:["You can stop at any time. You must be at least a second year student in your major","អ្នកអាចឈប់បានគ្រប់ពេល។ អ្នកត្រូវជានិស្សិតឆ្នាំទី ២ ឡើងទៅនៅក្នុងជំនាញរបស់អ្នក។"],
+  cAgree:["I've read this and agree to take part.","ខ្ញុំបានអានហើយ និងយល់ព្រមចូលរួម។"],
+  // section explainers: [What we ask, Why, Good to know]
+  infoHd:["About this part","អំពីផ្នែកនេះ"], whatL:["What we ask:","អ្វីដែលយើងសួរ៖"], whyL:["Why:","ហេតុអ្វី៖"], noteL:["Good to know:","គួរដឹង៖"],
+  bgWhat:["Basic facts about your major, and your year of study or your job.","ព័ត៌មានមូលដ្ឋានអំពីជំនាញរបស់អ្នក និងឆ្នាំសិក្សា ឬការងាររបស់អ្នក។"],
+  bgWhy:["We compare your answers with the major you actually chose, to check whether our test points people to majors they're happy in.","យើងប្រៀបធៀបចម្លើយរបស់អ្នកជាមួយជំនាញដែលអ្នកបានជ្រើសរើស ដើម្បីពិនិត្យថាតើតេស្តរបស់យើងណែនាំមនុស្សទៅរកជំនាញដែលពួកគេពេញចិត្តពិតប្រាកដដែរឬទេ។"],
+  bgNote:["We never ask your name. Your university or job is only used to group results.","យើងមិនត្រូវការឈ្មោះឬព័ត៍មានដែលបង្ហាញពីអត្តសញ្ញាណដែលទេ អ្វីដែលយើងការគឺសាកលវិទ្យាល័យ ឬការងាររបស់អ្នក ប្រើសម្រាប់តែចាត់ក្រុមលទ្ធផលប៉ុណ្ណោះ។"],
+  satWhat:["How happy you are with your major, whether you'd choose it again, and whether you've ever changed major.","កម្រិតពេញចិត្តរបស់អ្នកចំពោះជំនាញ ថាតើអ្នកនឹងជ្រើសវាម្តងទៀតឬទេ និងថាតើអ្នកធ្លាប់ប្តូរជំនាញឬទេ។"],
+  satWhy:["People who are happy in their major show us what a good match looks like. Knowing who changed major helps us measure the problem we're trying to reduce.","អ្នកដែលពេញចិត្តនឹងជំនាញរបស់ខ្លួន បង្ហាញយើងថាការផ្គូផ្គងល្អមានលក្ខណៈបែបណា។ ការដឹងថានរណាធ្លាប់ប្តូរជំនាញ ជួយយើងវាស់វែងបញ្ហាដែលយើងកំពុងព្យាយាមកាត់បន្ថយ។"],
+  satNote:["There's no right answer. Honest answers help most.","គ្មានចម្លើយត្រូវ ឬខុសទេ។ ចម្លើយស្មោះត្រង់ជួយយើងបានច្រើនបំផុត។"],
+  jWhat:["The one job you dream of, or the field you're drawn to if you're not sure yet.","ការងារមួយដែលអ្នកស្រមៃចង់ធ្វើ ឬវិស័យដែលអ្នកចាប់អារម្មណ៍ ប្រសិនបើអ្នកមិនទាន់ប្រាកដ។"],
+  jWhy:["Knowing where you'd like to end up helps us point to majors that lead there.","ការដឹងពីគោលដៅរបស់អ្នក ជួយយើងណែនាំជំនាញដែលនាំទៅដល់គោលដៅនោះ។"],
+  jNote:["It's okay not to know yet. Many students don't, and that's exactly why we're building this.","មិនអីទេ ប្រសិនបើអ្នកមិនទាន់ដឹង។ សិស្សជាច្រើនក៏មិនទាន់ដឹងដែរ ហើយនោះហើយជាមូលហេតុដែលយើងបង្កើតឧបករណ៍នេះ។"],
+  b1What:["30 small everyday activities. Rate how much you enjoy each one.","សកម្មភាពប្រចាំថ្ងៃតូចៗចំនួន ៣០។ សូមវាយតម្លៃថាអ្នកចូលចិត្តវានីមួយៗកម្រិតណា។"],
+  b1Why:["What you enjoy in daily life shows your interest type, and interest types connect to majors. No activity points to one job, so just answer honestly.","អ្វីដែលអ្នកចូលចិត្តក្នុងជីវិតប្រចាំថ្ងៃ បង្ហាញពីប្រភេទចំណាប់អារម្មណ៍របស់អ្នក ដែលភ្ជាប់ទៅនឹងជំនាញនានា។ គ្មានសកម្មភាពណាមួយចង្អុលទៅការងារតែមួយទេ ដូច្នេះសូមឆ្លើយដោយស្មោះត្រង់។"],
+  b1Note:["One question checks that you're reading. Please follow what it says.","មានសំណួរមួយពិនិត្យថាអ្នកកំពុងអាន សូមធ្វើតាមអ្វីដែលវាប្រាប់។"],
+  b2What:["Two quick “what would you do” situations.","ស្ថានភាពរហ័សពីរ “តើអ្នកនឹងធ្វើអ្វី”។"],
+  b2Why:["They add a little more detail to your interest results.","វាបន្ថែមព័ត៌មានលម្អិតបន្តិចទៅលើលទ្ធផលចំណាប់អារម្មណ៍របស់អ្នក។"],
+  b2Note:["Optional. Tap an answer again to clear it."," ចុចលើចម្លើយម្តងទៀត ដើម្បីលុបវាចេញ។"],
+  dWhat:["Working conditions that some people really dislike.","លក្ខខណ្ឌការងារដែលមនុស្សមួយចំនួនមិនចូលចិត្ត។"],
+  dWhy:["A major that fits on paper isn't a good fit if you'd hate the daily work, so each one you tick lowers the matching majors a little.","ជំនាញដែលហាក់ដូចជាសមនៅលើក្រដាស មិនមែនជាជម្រើសល្អទេ ប្រសិនបើអ្នកស្អប់សកម្មភាពប្រចាំថ្ងៃរបស់វា។ ដូច្នេះអ្វីដែលអ្នករើស នឹងបន្ថយពិន្ទុជំនាញដែលពាក់ព័ន្ធ។"],
+  dNote:["Optional. Leave it empty if nothing applies.","រំលងចោល ប្រសិនបើមិនមានអ្វីដែលត្រូវនឹងអ្នក។"],
+  pWhat:["Your style: how you get energy, take in ideas, make decisions and plan.","របៀបដែលអ្នកទទួលបានកម្លាំងមានទឹកចិត្ត ទទួលបានគំនិត សម្រេចចិត្ត និងរៀបចំផែនការ។"],
+  pWhy:["Personality fine-tunes your match. It counts for 20% of the result, less than interests, because research shows interests matter more when choosing a major.","បុគ្គលិកលក្ខណៈជួយកែសម្រួលការផ្គូផ្គងឱ្យកាន់តែល្អ។ វាមានទម្ងន់ ២០% នៃលទ្ធផល តិចជាងចំណាប់អារម្មណ៍ ព្រោះការស្រាវជ្រាវបង្ហាញថា ចំណាប់អារម្មណ៍មានសារៈសំខាន់ជាងក្នុងការជ្រើសរើសជំនាញ។"],
+  pInfoNote:["Enter a 4-letter type you already know, or answer our 12 quick questions.","បញ្ចូលប្រភេទអក្សរ ៤ ដែលអ្នកដឹងរួចហើយ ឬឆ្លើយសំណួររហ័ស ១២ របស់យើង។"],
+  qWhat:["12 everyday situations, each with two choices.","ស្ថានភាពប្រចាំថ្ងៃ ១២ ដែលមានជម្រើសពីរអោយអ្នកជ្រើសរើស។"],
+  qWhy:["Your answers place you on 4 simple scales, such as outgoing or reserved.","ចម្លើយរបស់អ្នកកំណត់ទីតាំងរបស់អ្នកលើមាត្រដ្ឋានសាមញ្ញ ៤ ដូចជា ចូលចិត្តជួបមនុស្ស ឬចូលចិត្តភាពស្ងប់ស្ងាត់។"],
+  qNote:["Pick what you usually do, not what you think is best.","សូមជ្រើសអ្វីដែលអ្នកធ្វើជាធម្មតា មិនមែនអ្វីដែលអ្នកគិតថាល្អទេ។"],
+  gWhat:["Your usual grades in Grade 11–12 or at BacII.","និទ្ទេសរបស់អ្នកនៅថ្នាក់ទី ១១–១២ ឬនៅបាក់ឌុប។"],
+  gWhy:["Grades are the most reliable sign of your strengths, more reliable than rating ourselves.","និទ្ទេសគឺជាសញ្ញាដែលគួរឱ្យទុកចិត្តបំផុតអំពីចំណុចខ្លាំងរបស់អ្នក ច្រើនជាងការវាយតម្លៃខ្លួនឯង។"],
+  gNote:["Your best memory is fine. Choose “Didn't study” if you didn't take a subject.","ជ្រើសតាមការស្មានប្រសិនជាអ្នកមិនចាំ ជ្រើស “មិនបានរៀន” ប្រសិនបើអ្នកមិនបានរៀនមុខវិជ្ជានោះ។"],
+  skWhat:["How you'd rate 9 skills compared with your classmates.","របៀបដែលអ្នកវាយតម្លៃខ្លួន បើប្រៀបធៀបនឹងមិត្តរួមថ្នាក់។"],
+  skWhy:["Some skills, like design or talking with people, aren't graded at school, so we ask you.","ជំនាញខ្លះ ដូចជាការរចនា ឬការនិយាយជាមួយមនុស្ស មិនត្រូវបានដាក់ពិន្ទុនៅសាលាទេ ដូច្នេះយើងសួរអ្នកផ្ទាល់។"],
+  skNote:["Optional. Skip any you're unsure about.","អាចរំលងបាន បើអ្នកមិនប្រាកដ។"],
+  rWhat:["Your top 3 majors from an early version of our formula, with a score for each part.","ជំនាញទាំង ៣ របស់អ្នក ផ្គូផ្គងពីរូបមន្តរបស់យើង ជាមួយពិន្ទុសម្រាប់ផ្នែកនីមួយៗ។"],
+  rWhy:["Your rating below tells us whether the test works. It's the most important answer for our research.","ការវាយតម្លៃរបស់អ្នកខាងក្រោម ប្រាប់យើងថាតើតេស្តនេះដំណើរការឬទេ វាជាចម្លើយដ៏សំខាន់បំផុតសម្រាប់ការស្រាវជ្រាវរបស់យើង។"],
+  rInfoNote:["This is a suggestion to explore, not a final answer.","នេះគឺជាការណែនាំសម្រាប់ស្វែងយល់បន្ថែម មិនមែនជាចម្លើយចុងក្រោយទេ។"],
+  drWhat:["An optional lucky draw for gifts.","ការចាប់រង្វាន់សំណាងដែលមិនបង្ខំ។"],
+  drWhy:["A small thank-you for your time.","ជាការអរគុណតូចមួយសម្រាប់ពេលវេលារបស់អ្នក។"],
+  drNote:["Your contact is saved separately from your answers, used only to reach winners, and deleted after the gifts are delivered.","ព័ត៌មានទំនាក់ទំនងរបស់អ្នកត្រូវបានរក្សាទុកដាច់ដោយឡែកពីចម្លើយ ប្រើសម្រាប់តែទាក់ទងអ្នកឈ្នះ ហើយលុបចោលបន្ទាប់ពីប្រគល់កាដូរួច។"],
+  // about
+  aEyebrow:["About you","អំពីអ្នក"], aTitle:["A quick check","សំណួរខ្លីៗ"],
+  aYear2:["Are you in year 2 or above of your major?","តើអ្នកជានិស្សិតឆ្នាំទី ២ ឡើងទៅនៅក្នុងជំនាញរបស់អ្នកដែរឬទេ?"],
+  aRole:["Which describes you now?","តើមួយណាពិពណ៌នាអំពីអ្នកនាពេលបច្ចុប្បន្ន?"],
+  aStudent:["University student","និស្សិតសាកលវិទ្យាល័យ"], aWorker:["Working","កំពុងធ្វើការ"],
+  inTitle:["Thank you for your interest","សូមអរគុណចំពោះការចាប់អារម្មណ៍"],
+  inText:["This study is for university students in year 2 or above, because year 1 is too early to know how you feel about your major. You're welcome to try Major Match when it launches.","ការសិក្សានេះសម្រាប់និស្សិតឆ្នាំទី ២ ឡើងទៅ ពួកយើងលើកទឹកចិត្តឱ្យសាកល្បង Major Match នៅពេលដាក់ឱ្យប្រើប្រាស់។"],
+  // background
+  bsEyebrow:["Your studies","ការសិក្សារបស់អ្នក"], bsTitle:["Tell us about your university major","ប្រាប់យើងអំពីជំនាញរបស់អ្នកនៅសាកលវិទ្យាល័យ"],
+  univ:["University","សាកលវិទ្យាល័យ"], major:["Major","ជំនាញ"], yourMajor:["Your major","ជំនាញរបស់អ្នក"], yearStudy:["Year of study","ឆ្នាំសិក្សា"],
+  yearN:["Year {n}","ឆ្នាំទី {n}"], year5:["Year 5+","ឆ្នាំទី ៥+"],
+  bwEyebrow:["Your work","ការងាររបស់អ្នក"], bwTitle:["Tell us about your degree and job","ប្រាប់យើងអំពីសញ្ញាបត្រ និងការងាររបស់អ្នក"],
+  degMajor:["University major you studied","ជំនាញដែលអ្នកបានរៀននៅសាកលវិទ្យាល័យ"], curJob:["Your current job","ការងារបច្ចុប្បន្នរបស់អ្នក"], jobTitle:["Your job title","មុខតំណែងរបស់អ្នក"],
+  howLong:["How long have you worked?","តើអ្នកបានធ្វើការរយៈពេលប៉ុន្មាន?"],
+  w1:["Under 1 year","តិចជាង ១ ឆ្នាំ"], w2:["1–2 years","១–២ ឆ្នាំ"], w3:["3–5 years","៣–៥ ឆ្នាំ"], w4:["6+ years","៦ ឆ្នាំឡើង"],
+  related:["Is your job related to your degree?","តើការងាររបស់អ្នកពាក់ព័ន្ធនឹងសញ្ញាបត្ររបស់អ្នកដែរឬទេ?"],
+  // satisfaction
+  sEyebrow:["How you feel about it","អារម្មណ៍របស់អ្នក"], sTitleS:["Your major","ជំនាញរបស់អ្នក"], sTitleW:["Your major and job","ជំនាញ និងការងាររបស់អ្នក"],
+  satS:["How satisfied are you with your major?","តើអ្នកពេញចិត្តនឹងជំនាញរបស់អ្នកកម្រិតណា?"],
+  satW:["How satisfied are you with your job?","តើអ្នកពេញចិត្តនឹងការងាររបស់អ្នកកម្រិតណា?"],
+  notAtAll:["Not at all","មិនពេញចិត្តសោះ"], verySat:["Very satisfied","ពេញចិត្តខ្លាំង"],
+  again:["If you could choose again, would you pick the same major?","ប្រសិនបើអាចជ្រើសរើសម្តងទៀត តើអ្នកនឹងជ្រើសជំនាញដដែលឬទេ?"],
+  changed:["Have you changed your major since starting university?","តើអ្នកធ្លាប់ប្តូរជំនាញ ចាប់តាំងពីចូលរៀននៅសាកលវិទ្យាល័យដែរឬទេ?"],
+  chNo:["No","មិនធ្លាប់"], chOnce:["Yes, once","ធ្លាប់ ម្តង"], chMore:["Yes, more than once","ធ្លាប់ ច្រើនជាងម្តង"],
+  advice:["What advice would you give a Grade 12 student choosing a major? (optional)","តើអ្នកនឹងផ្តល់ដំបូន្មានអ្វីដល់សិស្សថ្នាក់ទី ១២ ដែលកំពុងជ្រើសរើសជំនាញ? (មិនបង្ខំ)"],
+  // careers
+  jEyebrow:["Part 1 of 7 · Dream job","ផ្នែកទី ១ នៃ ៧ · ការងារក្នុងក្តីស្រមៃ"],
+  jTitle:["Do you already have a dream job?","តើអ្នកមានការងារក្នុងក្តីស្រមៃហើយឬនៅ?"],
+  jYes:["Yes, I have one","មាន"], jYesSub:["Pick one job","ជ្រើសការងារមួយ"],
+  jNo:["Not sure yet","មិនទាន់ប្រាកដ"], jNoSub:["Choose a field instead","ជ្រើសវិស័យជំនួសវិញ"],
+  jChosen:["Your dream job","ការងារក្នុងក្តីស្រមៃរបស់អ្នក"],
+  jAdd:["Use “{q}” as my dream job","ប្រើ “{q}” ជាការងារក្នុងក្តីស្រមៃរបស់ខ្ញុំ"],
+  fTitle:["Which field are you most drawn to? Pick 1 or 2.","តើអ្នកចាប់អារម្មណ៍វិស័យណាជាងគេ? ជ្រើស ១ ឬ ២។"],
+  fTitleCustom:["Which field is this job in?","តើការងារនេះស្ថិតក្នុងវិស័យណា?"],
+  fNone:["I really don't know yet","ខ្ញុំពិតជាមិនទាន់ដឹងនៅឡើយ"],
+  jSkipped:["Not chosen","មិនបានជ្រើស"],
+  jSearch:["Search jobs, e.g. nurse, design, bank…","ស្វែងរកការងារ ឧ. គិលានុបដ្ឋាក រចនា ធនាគារ…"],
+  jEmpty:["Nothing picked yet. Search, or tap a group below to browse.","មិនទាន់បានជ្រើសរើសទេ។ សូមស្វែងរក ឬចុចលើក្រុមខាងក្រោមដើម្បីរកមើល។"],
+  jChange:["Tap ✕ to change it.","ចុច ✕ ដើម្បីប្តូរ។"],
+  jNoMatch:["No jobs match “{q}”. Try another word.","រកមិនឃើញការងារសម្រាប់ “{q}”។ សូមសាកពាក្យផ្សេង។"],
+  jResults:["Search results","លទ្ធផលស្វែងរក"],
+  // B1
+  b1Eyebrow:["Part 2 of 7 · Everyday activities · page {p} of 4","ផ្នែកទី ២ នៃ ៧ · សកម្មភាពប្រចាំថ្ងៃ · ទំព័រ {p} នៃ ៤"],
+  b1Title:["How much do you enjoy this?","តើអ្នកចូលចិត្តវាកម្រិតណា?"],
+  b1Sub:["If you've never done it, imagine doing it.","បើមិនធ្លាប់ធ្វើ សូមស្រមៃថាអ្នកកំពុងធ្វើវា។"],
+  // B2
+  b2Eyebrow:["Part 3 of 7 · Quick picks","ផ្នែកទី ៣ នៃ ៧ · "], b2Title:["Two quick choices",""],
+  optional:["Optional. Pick the closest answer.","សូមជ្រើសចម្លើយដែលស្រដៀង ឬប្រហាក់ប្រហែលបំផុត។"],
+  // deal
+  dEyebrow:["Part 4 of 7 · Deal-breakers","ផ្នែកទី ៤ នៃ ៧ · អ្វីដែលអ្នកមិនចូលចិត្តធ្វើ"],
+  dTitle:["Tick anything you would really hate to do every day at work","សូមជ្រើសរើសអ្វីដែលអ្នកពិតជាមិនចង់ធ្វើរៀងរាល់ថ្ងៃនៅកន្លែងធ្វើការ"],
+  dSub:["Optional. Leave it empty if nothing applies.","ទុកចោលទទេ បើគ្មានអ្វីត្រូវនឹងអ្នក។"],
+  // personality
+  pEyebrow:["Part 5 of 7 · Personality","ផ្នែកទី ៥ នៃ ៧ · បុគ្គលិកលក្ខណៈ"],
+  pTitle:["Have you taken a personality test that gave you a 4-letter type (like INTP or ESFJ)?","តើអ្នកធ្លាប់ធ្វើតេស្តបុគ្គលិកលក្ខណៈ ដែលផ្តល់ប្រភេទអក្សរ ៤ (ដូចជា INTP ឬ ESFJ) ដែរឬទេ?"],
+  pKnow:["Yes, I know my type","បាទ/ចាស ខ្ញុំដឹងពីបុគ្គលិកលក្ខណៈរបស់ខ្ញុំ"], pKnowSub:["Type your 4 letters","វាយអក្សរ ៤ របស់អ្នក"],
+  pQuiz:["No / not sure","ទេ / មិនប្រាកដ"], pQuizSub:["Take our short quiz (12 questions)","ធ្វើកម្រងសំណួរខ្លីរបស់យើង (១២ សំណួរ)"],
+  pType:["Your 4-letter type","ប្រភេទអក្សរ ៤ របស់អ្នក"], pTypePh:["e.g. INTP","ឧ. INTP"],
+  pAlso:["I'd also like to take the short quiz","ខ្ញុំក៏ចង់ធ្វើកម្រងសំណួរខ្លីផងដែរ"],
+  pNote:["Our quiz is short (12 questions, about 2 minutes) and only gives a rough picture to help match majors. It is not a full personality test. For a deeper look, you can take a free full test online, such as https://www.16personalities.com/, and enter your 4-letter type here.",
+         "កម្រងសំណួររបស់យើងខ្លី (១២ សំណួរ ប្រហែល ២ នាទី) ហើយផ្តល់ត្រឹមការគណនាទូទៅ ដើម្បីជួយផ្គូផ្គងជំនាញប៉ុណ្ណោះ។ វាមិនមែនជាតេស្តបុគ្គលិកលក្ខណៈពេញលេញទេ។ ប្រសិនបើចង់ស្វែងយល់ឱ្យកាន់តែស៊ីជម្រៅ អ្នកអាចធ្វើតេស្តពេញលេញឥតគិតថ្លៃតាមអ៊ីនធឺណិត ដូចជា https://www.16personalities.com/ ហើយបញ្ចូលប្រភេទអក្សរ ៤ របស់អ្នកនៅទីនេះ។"],
+  qEyebrow:["Part 5 of 7 · Personality quiz · page {p} of 2","ផ្នែកទី ៥ នៃ ៧ · កម្រងសំណួរបុគ្គលិកលក្ខណៈ · ទំព័រ {p} នៃ ២"],
+  qTitle:["Which sounds more like you?","តើមួយណាស្រដៀងនឹងអ្នកជាងគេ?"],
+  defA:["Definitely A","A ច្បាស់"], probA:["Probably A","ប្រហែល A"], probB:["Probably B","ប្រហែល B"], defB:["Definitely B","B ច្បាស់"],
+  // grades + skills
+  gEyebrow:["Part 6 of 7 · School results","ផ្នែកទី ៦ នៃ ៧ · លទ្ធផលសិក្សា"],
+  gTitle:["What grade did you usually get in Grade 11–12 (or BacII)?","តើជាធម្មតាអ្នកទទួលបាននិទ្ទេសអ្វីនៅថ្នាក់ទី ១១–១២ (ឬបាក់ឌុប)?"],
+  gSub:["Your best memory is fine.","តាមការចងចាំរបស់អ្នកក៏បាន។"],
+  didnt:["Didn't study","មិនបានរៀន"], track:["Your high-school track","ផ្នែកសិក្សានៅវិទ្យាល័យ"], sci:["Science","វិទ្យាសាស្ត្រ"], soc:["Social Science","វិទ្យាសាស្ត្រសង្គម"],
+  skEyebrow:["Part 7 of 7 · Your skills","ផ្នែកទី ៧ នៃ ៧ · ជំនាញរបស់អ្នក"],
+  skTitle:["Compared with your classmates, how good are you at…","បើប្រៀបធៀបនឹងមិត្តរួមថ្នាក់ តើអ្នកពូកែកម្រិតណាក្នុង…"],
+  skSub:["Skip any you're unsure about.","អាចរំលងបាន បើអ្នកមិនប្រាកដ។"],
+  // results
+  rEyebrow:["Your results","លទ្ធផលរបស់អ្នក"], rTitle:["Your top 3 majors","ជំនាញទាំង ៣ ដែលសាកសមសម្រាប់អ្នក"],
+  rCode:["Interests:","ចំណាប់អារម្មណ៍៖"], rLean:["You lean:","អ្នកទំនោរទៅរក៖"],
+  mJob:["Future jobs","ការងារអនាគត"], mInt:["Interests","ចំណាប់អារម្មណ៍"], mPers:["Personality","បុគ្គលិកលក្ខណៈ"], mStr:["Strengths","ចំណុចខ្លាំង"],
+  notEnough:["Not enough info","ព័ត៌មានមិនគ្រប់"], adm:["Admission:","ការចូលរៀន៖"],
+  rNote:["These are suggestions to explore, based on an early version of our formula.","ទាំងនេះជាការណែនាំសម្រាប់ស្វែងយល់បន្ថែម ដោយផ្អែកលើរូបមន្តកំណែដំបូងរបស់យើង។"],
+  rFit:["How well do these results match you?","តើលទ្ធផលទាំងនេះត្រូវនឹងអ្នកកម្រិតណា?"], veryWell:["Very well","ត្រូវខ្លាំង"],
+  rComment:["Anything else? (optional)","មានអ្វីបន្ថែមទៀតទេ? (មិនបង្ខំ)"],
+  // draw + thanks
+  drEyebrow:["Lucky draw","ចាប់រង្វាន់សំណាង"], drTitle:["Join the draw for a gift 🎁","ចូលរួមចាប់រង្វាន់កាដូ 🎁"],
+  drSub:["Optional. Draw on 05/11/2026, streamed live on our Facebook Page.","ចាប់រង្វាន់នៅថ្ងៃទី 05/11/2026 ផ្សាយផ្ទាល់នៅលើ Facebook Page របស់យើង។"],
+  winners:["5 winner(s)","អ្នកឈ្នះ 5 នាក់"],
+  contact:["Phone number or Telegram username","លេខទូរសព្ទ ឬឈ្មោះ Telegram"], contactPh:["e.g. 012 345 678 or @username","ឧ. 012 345 678 ឬ @username"],
+  drOk:["Contact me if I win. Store this separately from my answers and delete it after the gifts are delivered.","ទាក់ទងមកខ្ញុំ ប្រសិនបើខ្ញុំឈ្នះ។ សូមរក្សាទុកព័ត៌មាននេះដាច់ដោយឡែកពីចម្លើយរបស់ខ្ញុំ ហើយលុបចោលបន្ទាប់ពីប្រគល់កាដូរួច។"],
+  tTitle:["Thank you!","សូមអរគុណ!"], tCat:["Thank you!","អរគុណច្រើន!"],
+  tText:["Your answers help us build a better major-matching tool for Cambodian students.","ចម្លើយរបស់អ្នកជួយយើងបង្កើតឧបករណ៍ផ្គូផ្គងជំនាញកាន់តែប្រសើរសម្រាប់សិស្ស។"],
+  tIn:["You're in the lucky draw. Winners are announced on our Facebook Page on 05/11/2026.","អ្នកបានចូលរួមចាប់រង្វាន់សំណាងហើយ។ អ្នកឈ្នះនឹងត្រូវប្រកាសនៅលើ Facebook Page របស់យើងនៅថ្ងៃទី 05/11/2026។"],
+  tOut:["You didn't enter the lucky draw.","អ្នកមិនបានចូលរួមចាប់រង្វាន់សំណាងទេ។"],
+  tShare:["Know someone at university or working after their degree? Share this survey with them.","ស្គាល់នរណាម្នាក់ដែលកំពុងរៀននៅសាកលវិទ្យាល័យ ឬកំពុងធ្វើការក្រោយបញ្ចប់ការសិក្សាទេ? សូមចែករំលែកការស្ទង់មតិនេះទៅពួកគេ។"],
+  // errors
+  eConsent:["Please tick the box to agree before starting.","សូមធីកប្រអប់ដើម្បីយល់ព្រម មុនពេលចាប់ផ្តើម។"],
+  eBoth:["Please answer both questions.","សូមឆ្លើយសំណួរទាំងពីរ។"],
+  eYear2:["Please tell us whether you're in year 2 or above.","សូមប្រាប់យើងថាតើអ្នកជានិស្សិតឆ្នាំទី ២ ឡើងទៅឬទេ។"],
+  eBgS:["Please fill in your university, major and year.","សូមបំពេញសាកលវិទ្យាល័យ ជំនាញ និងឆ្នាំសិក្សា។"],
+  eMissing:["Still missing: {f}.","នៅខ្វះ៖ {f}។"],
+  eMajor:["Please type your major.","សូមវាយបញ្ចូលជំនាញរបស់អ្នក។"],
+  eBgW:["Please answer all four questions.","សូមឆ្លើយសំណួរទាំងបួន។"],
+  eJob:["Please type your job title.","សូមវាយបញ្ចូលមុខតំណែងរបស់អ្នក។"],
+  eDream:["Pick a dream job, or choose “Not sure yet”.","សូមជ្រើសការងារក្នុងក្តីស្រមៃ ឬជ្រើស “មិនទាន់ប្រាកដ”។"],
+  eField:["Pick a field, or choose “I really don't know yet”.","សូមជ្រើសវិស័យ ឬជ្រើស “ខ្ញុំពិតជាមិនទាន់ដឹងនៅឡើយ”។"],
+  eFieldC:["Please pick the field your dream job is in.","សូមជ្រើសវិស័យនៃការងារក្នុងក្តីស្រមៃរបស់អ្នក។"],
+  eField2:["You can pick up to 2 fields.","អ្នកអាចជ្រើសបានច្រើនបំផុត ២ វិស័យ។"],
+  eSat3:["Please answer the first three questions.","សូមឆ្លើយសំណួរទាំងបីដំបូង។"],
+  eLeft:["Please answer every question on this page ({n} left).","សូមឆ្លើយគ្រប់សំណួរនៅទំព័រនេះ (នៅសល់ {n})។"],
+  ePick:["Please choose one option.","សូមជ្រើសរើសជម្រើសមួយ។"],
+  eType:["That doesn't look like a 4-letter type. Use one letter from each pair: E/I, N/S, T/F, J/P. Or choose “No / not sure” to take our quiz.",
+         "ទម្រង់នេះមិនត្រឹមត្រូវទេ។ សូមប្រើអក្សរមួយពីគូនីមួយៗ៖ E/I, N/S, T/F, J/P។ ឬជ្រើស “ទេ / មិនប្រាកដ” ដើម្បីធ្វើកម្រងសំណួររបស់យើង។"],
+  eGrades:["Please choose an answer for every subject and your track. Use “Didn't study” if it doesn't apply.","សូមជ្រើសចម្លើយសម្រាប់គ្រប់មុខវិជ្ជា និងផ្នែកសិក្សារបស់អ្នក។ ប្រើ “មិនបានរៀន” ប្រសិនបើមិនពាក់ព័ន្ធ។"],
+  eFit:["Please rate how well the results match you.","សូមវាយតម្លៃថាលទ្ធផលត្រូវនឹងអ្នកកម្រិតណា។"],
+  eDraw:["Tick the box to enter the draw, or clear the contact field.","សូមធីកប្រអប់ដើម្បីចូលរួមចាប់រង្វាន់ ឬលុបព័ត៌មានទំនាក់ទំនងចេញ។"]
+};
+
+/* ===== Content ===== */
+const TYPES = {R:{en:"Realistic",km:"ជាក់ស្តែង"},I:{en:"Investigative",km:"ស្រាវជ្រាវ"},A:{en:"Artistic",km:"សិល្បៈ"},
+  S:{en:"Social",km:"សង្គម"},E:{en:"Enterprising",km:"សហគ្រិន"},C:{en:"Conventional",km:"រៀបរយ"}};
+
+const ADM = {
+  sciOften:{en:"Often science track; check each programme.",km:"ជាញឹកញាប់តម្រូវផ្នែកវិទ្យាសាស្ត្រ សូមពិនិត្យកម្មវិធីសិក្សានីមួយៗ។"},
+  sciUsual:{en:"Usually science track; check each programme.",km:"ជាធម្មតាតម្រូវផ្នែកវិទ្យាសាស្ត្រ សូមពិនិត្យកម្មវិធីសិក្សានីមួយៗ។"},
+  check:{en:"Check each programme.",km:"សូមពិនិត្យកម្មវិធីសិក្សានីមួយៗ។"},
+  drawing:{en:"May ask for a drawing test; check each programme.",km:"អាចតម្រូវឱ្យប្រឡងគំនូរ សូមពិនិត្យកម្មវិធីសិក្សានីមួយៗ។"},
+  entrance:{en:"Science track and entrance exam; check each programme.",km:"តម្រូវផ្នែកវិទ្យាសាស្ត្រ និងប្រឡងចូល សូមពិនិត្យកម្មវិធីសិក្សានីមួយៗ។"},
+  portfolio:{en:"May ask for a portfolio; check each programme.",km:"អាចតម្រូវឱ្យមានស្នាដៃ (portfolio) សូមពិនិត្យកម្មវិធីសិក្សានីមួយៗ។"}
+};
+
+/* pers = leaning per dimension in order Social, Big-picture, Heart-first, Planner: H = 75, L = 25, - = no leaning */
+const MAJORS = [
+ {id:"ds",en:"Data Science",km:"វិទ្យាសាស្ត្រទិន្នន័យ",code:"I-C-R",focus:["Data","Ideas"],skills:["Math","Logic","Computer"],adm:"sciOften",pers:"LH-H"},
+ {id:"it",en:"IT / Software Engineering",km:"ព័ត៌មានវិទ្យា / វិស្វកម្មកម្មវិធី",code:"I-R-C",focus:["Ideas","Things"],skills:["Logic","Computer","Math"],adm:"sciOften",pers:"LH--"},
+ {id:"cy",en:"Cybersecurity / Networking",km:"សន្តិសុខអ៊ីនធឺណិត / បណ្តាញ",code:"I-R-C",focus:["Things","Data"],skills:["Logic","Computer","Organization"],adm:"check",pers:"L--H"},
+ {id:"ee",en:"Electrical & Electronic Engineering",km:"វិស្វកម្មអគ្គិសនី និងអេឡិចត្រូនិច",code:"R-I",focus:["Things","Ideas"],skills:["Math","Hands-on","Logic"],adm:"sciUsual",pers:"L-L-"},
+ {id:"ce",en:"Civil Engineering",km:"វិស្វកម្មសំណង់ស៊ីវិល",code:"R-I-C",focus:["Things","Data"],skills:["Math","Hands-on","Logic"],adm:"sciUsual",pers:"-L-H"},
+ {id:"ar",en:"Architecture",km:"ស្ថាបត្យកម្ម",code:"A-R-I",focus:["Ideas","Things"],skills:["Design","Math","Hands-on"],adm:"drawing",pers:"-H--"},
+ {id:"md",en:"Medicine / Dentistry",km:"វេជ្ជសាស្ត្រ / ទន្តសាស្ត្រ",code:"I-S-R",focus:["Ideas","People"],skills:["Science","Logic","Organization"],adm:"entrance",pers:"---H"},
+ {id:"nu",en:"Nursing / Physiotherapy",km:"គិលានុបដ្ឋាក / ព្យាបាលដោយចលនា",code:"S-I-R",focus:["People","Things"],skills:["Science","People","Hands-on"],adm:"sciUsual",pers:"HLHH"},
+ {id:"ac",en:"Accounting",km:"គណនេយ្យ",code:"C-E-I",focus:["Data"],skills:["Math","Organization","Computer"],adm:"check",pers:"LL-H"},
+ {id:"fi",en:"Finance & Banking",km:"ហិរញ្ញវត្ថុ និងធនាគារ",code:"C-E-I",focus:["Data","People"],skills:["Math","Logic","English"],adm:"check",pers:"--LH"},
+ {id:"mk",en:"Marketing / Business Admin",km:"ទីផ្សារ / គ្រប់គ្រងពាណិជ្ជកម្ម",code:"E-A-S",focus:["People","Ideas"],skills:["People","English","Design"],adm:"check",pers:"HH--"},
+ {id:"hr",en:"Human Resource Management",km:"គ្រប់គ្រងធនធានមនុស្ស",code:"S-E-C",focus:["People","Data"],skills:["People","Organization","Khmer"],adm:"check",pers:"H-HH"},
+ {id:"lw",en:"Law",km:"នីតិសាស្ត្រ",code:"E-I-S",focus:["People","Ideas"],skills:["Khmer","Logic","People"],adm:"check",pers:"H-LH"},
+ {id:"gd",en:"Graphic Design / Multimedia",km:"រចនាក្រាហ្វិក / ពហុព័ត៌មាន",code:"A-E-R",focus:["Ideas","Things"],skills:["Design","Computer"],adm:"portfolio",pers:"-H-L"},
+ {id:"ho",en:"Hospitality & Tourism",km:"បដិសណ្ឋារកិច្ច និងទេសចរណ៍",code:"E-S-C",focus:["People","Data"],skills:["People","English","Organization"],adm:"check",pers:"HLH-"},
+ {id:"ed",en:"Education / TESOL",km:"អប់រំ / បង្រៀនភាសាអង់គ្លេស (TESOL)",code:"S-A-I",focus:["People","Ideas"],skills:["English","People","Khmer"],adm:"check",pers:"H-H-"}
+];
+
+const CATS = [
+ ["tech",{en:"💻 Tech",km:"💻 បច្ចេកវិទ្យា"}],
+ ["eng",{en:"🏗️ Engineering",km:"🏗️ វិស្វកម្ម"}],
+ ["health",{en:"🩺 Health",km:"🩺 សុខាភិបាល"}],
+ ["biz",{en:"💼 Business & money",km:"💼 ពាណិជ្ជកម្ម និងហិរញ្ញវត្ថុ"}],
+ ["creative",{en:"🎨 Creative & design",km:"🎨 ច្នៃប្រឌិត និងរចនា"}],
+ ["people",{en:"🤝 People & service",km:"🤝 សេវាកម្ម និងមនុស្ស"}]
+];
+
+/* Fields for students who aren't sure of a dream job. m = majors in that field */
+const FIELDS = [
+ {id:"science", icon:"🔬", en:"Science & research", km:"វិទ្យាសាស្ត្រ និងស្រាវជ្រាវ", ex:{en:"lab work, medicine, data",km:"មន្ទីរពិសោធន៍ វេជ្ជសាស្ត្រ ទិន្នន័យ"}, m:["ds","md","nu"]},
+ {id:"tech", icon:"💻", en:"Technology", km:"បច្ចេកវិទ្យា", ex:{en:"coding, networks, data",km:"សរសេរកូដ បណ្តាញ ទិន្នន័យ"}, m:["ds","it","cy"]},
+ {id:"eng", icon:"🏗️", en:"Engineering & building", km:"វិស្វកម្ម និងសំណង់", ex:{en:"machines, electricity, construction",km:"ម៉ាស៊ីន អគ្គិសនី សំណង់"}, m:["ee","ce","ar"]},
+ {id:"health", icon:"🩺", en:"Health & care", km:"សុខាភិបាល និងការថែទាំ", ex:{en:"hospitals, patients, wellbeing",km:"មន្ទីរពេទ្យ អ្នកជំងឺ សុខុមាលភាព"}, m:["md","nu"]},
+ {id:"biz", icon:"💼", en:"Business & money", km:"ពាណិជ្ជកម្ម និងហិរញ្ញវត្ថុ", ex:{en:"banking, accounting, selling",km:"ធនាគារ គណនេយ្យ ការលក់"}, m:["ac","fi","mk","hr"]},
+ {id:"creative", icon:"🎨", en:"Creative & design", km:"ច្នៃប្រឌិត និងរចនា", ex:{en:"design, media, content",km:"រចនា ប្រព័ន្ធផ្សព្វផ្សាយ មាតិកា"}, m:["gd","ar","mk"]},
+ {id:"people", icon:"🤝", en:"People & service", km:"មនុស្ស និងសេវាកម្ម", ex:{en:"teaching, law, tourism, HR",km:"បង្រៀន ច្បាប់ ទេសចរណ៍ ធនធានមនុស្ស"}, m:["ed","ho","lw","hr"]}
+];
+
+/* Career card names follow the MLVT Job Outlook Survey 2024 occupation list.
+   CORE = the original job list (doctor, nurse, accountant, lawyer, teacher…), kept so these common dream jobs can still be picked. */
+const CORE_CAREERS = [
+ ["web","tech","Web technician","អ្នកបច្ចេកទេសគេហទំព័រ",["it"],"website internet"],
+ ["ictop","tech","ICT operations technician","អ្នកបច្ចេកទេសប្រតិបត្តិការ ICT",["it","cy"],"it support computer"],
+ ["app","tech","Applications programmer","អ្នកសរសេរកម្មវិធីអនុវត្ត",["it","ds"],"coding code programming app"],
+ ["soft","tech","Software developer","អ្នកអភិវឌ្ឍកម្មវិធី",["it"],"coding code programming software app"],
+ ["sysan","tech","Systems analyst","អ្នកវិភាគប្រព័ន្ធ",["ds","it"],"data analysis"],
+ ["net","tech","Computer network professional","អ្នកជំនាញបណ្តាញកុំព្យូទ័រ",["cy"],"network security cyber"],
+ ["ittr","tech","IT trainer","គ្រូបង្វឹក IT",["ed","it"],"teach training computer"],
+ ["tel","eng","Telecommunications engineer","វិស្វករទូរគមនាគមន៍",["ee"],"phone telecom"],
+ ["elec","eng","Electronics engineer","វិស្វករអេឡិចត្រូនិច",["ee"],"electric electrical"],
+ ["civil","eng","Civil engineer","វិស្វករសំណង់ស៊ីវិល",["ce"],"construction building"],
+ ["surv","eng","Surveyor","អ្នកវាស់វែងដី",["ce"],"land measure"],
+ ["doc","health","Doctor or dentist","វេជ្ជបណ្ឌិត ឬទន្តពេទ្យ",["md"],"medical medicine hospital"],
+ ["nurse","health","Nurse or physiotherapist","គិលានុបដ្ឋាក ឬអ្នកព្យាបាលដោយចលនា",["nu"],"hospital care physio"],
+ ["acct","biz","Accountant or auditor","គណនេយ្យករ ឬសវនករ",["ac"],"accounting audit"],
+ ["fadv","biz","Financial adviser","ទីប្រឹក្សាហិរញ្ញវត្ថុ",["fi"],"bank finance money"],
+ ["fman","biz","Finance manager","អ្នកគ្រប់គ្រងហិរញ្ញវត្ថុ",["fi","ac"],"bank finance money"],
+ ["sales","biz","Sales & marketing manager","អ្នកគ្រប់គ្រងផ្នែកលក់ និងទីផ្សារ",["mk"],"sell selling marketing business"],
+ ["hr","biz","HR specialist or manager","អ្នកឯកទេស ឬអ្នកគ្រប់គ្រងធនធានមនុស្ស",["hr"],"human resources hiring"],
+ ["arch","creative","Architect / landscape architect","ស្ថាបត្យករ / ស្ថាបត្យករទេសភាព",["ar"],"building design drawing"],
+ ["gdes","creative","Graphic & multimedia designer","អ្នករចនាក្រាហ្វិក និងពហុព័ត៌មាន",["gd"],"design graphic art drawing"],
+ ["webdev","creative","Web & multimedia developer","អ្នកអភិវឌ្ឍគេហទំព័រ និងពហុព័ត៌មាន",["it","gd"],"website coding design multimedia"],
+ ["pr","creative","Advertising & PR manager","អ្នកគ្រប់គ្រងផ្សព្វផ្សាយ និងទំនាក់ទំនងសាធារណៈ",["mk"],"advertising media marketing"],
+ ["law","people","Lawyer","មេធាវី",["lw"],"law court"],
+ ["hotel","people","Hotel or restaurant manager","អ្នកគ្រប់គ្រងសណ្ឋាគារ ឬភោជនីយដ្ឋាន",["ho"],"hotel restaurant tourism"],
+ ["chef","people","Chef","ចុងភៅ",["ho"],"cook food kitchen"],
+ ["teach","people","Teacher or lecturer","គ្រូបង្រៀន ឬសាស្ត្រាចារ្យ",["ed"],"teacher school english"]
+].map(([id,cat,en,km,m,kw])=>({id,cat,en,km,m,kw}));
+
+const moreCareers = [
+  // TECH
+  ["dataan","tech","Data analyst","អ្នកវិភាគទិន្នន័យ",["ds","it"],"data analytics statistics excel sql"],
+  ["datasci","tech","Data scientist","អ្នកវិទ្យាសាស្ត្រទិន្នន័យ",["ds","it"],"data science statistics python machine learning"],
+  ["dataeng","tech","Data engineer","វិស្វករទិន្នន័យ",["ds","it"],"data pipeline database etl"],
+  ["bi","tech","Business intelligence analyst","អ្នកវិភាគព័ត៌មានអាជីវកម្ម",["ds","it"],"power bi dashboard reporting data"],
+  ["stat","tech","Statistician","អ្នកស្ថិតិ",["ds"],"statistics probability research"],
+  ["ml","tech","Machine learning engineer","វិស្វកររៀនសូត្ររបស់ម៉ាស៊ីន",["ds","it"],"machine learning ai python"],
+  ["ai","tech","AI specialist","អ្នកឯកទេសបញ្ញាសិប្បនិម្មិត",["ds","it"],"artificial intelligence ai automation"],
+  ["db","tech","Database administrator","អ្នកគ្រប់គ្រងមូលដ្ឋានទិន្នន័យ",["it","ds"],"database sql server"],
+  ["qa","tech","Software quality assurance tester","អ្នកត្រួតពិនិត្យគុណភាពកម្មវិធី",["it"],"software testing qa bugs"],
+  ["devops","tech","DevOps engineer","វិស្វករ DevOps",["it"],"cloud deployment automation linux"],
+  ["cloud","tech","Cloud engineer","វិស្វករប្រព័ន្ធក្លោដ",["it"],"cloud computing aws azure"],
+  ["cyanal","tech","Cybersecurity analyst","អ្នកវិភាគសន្តិសុខសាយប័រ",["cy","it"],"cybersecurity security risk"],
+  ["forensic","tech","Digital forensics specialist","អ្នកឯកទេសកោសល្យវិច្ច័យឌីជីថល",["cy","it"],"digital evidence investigation"],
+  ["pmtech","tech","IT project manager","អ្នកគ្រប់គ្រងគម្រោង IT",["it"],"technology project planning"],
+  ["support","tech","IT support specialist","អ្នកឯកទេសគាំទ្រ IT",["it"],"computer troubleshooting helpdesk"],
+  ["gis","tech","GIS specialist","អ្នកឯកទេសប្រព័ន្ធព័ត៌មានភូមិសាស្ត្រ",["ds","it"],"gis mapping spatial data"],
+
+  // ENGINEERING
+  ["mech","eng","Mechanical engineer","វិស្វករមេកានិច",["me"],"machines mechanics manufacturing"],
+  ["chemeng","eng","Chemical engineer","វិស្វករគីមី",["ch"],"chemical processes industrial production"],
+  ["indeng","eng","Industrial engineer","វិស្វករឧស្សាហកម្ម",["me"],"production efficiency manufacturing"],
+  ["enveng","eng","Environmental engineer","វិស្វករបរិស្ថាន",["ce"],"environment pollution engineering"],
+  ["water","eng","Water resources engineer","វិស្វករធនធានទឹក",["ce"],"water supply irrigation drainage"],
+  ["trans","eng","Transportation engineer","វិស្វករដឹកជញ្ជូន",["ce"],"roads traffic transport"],
+  ["struct","eng","Structural engineer","វិស្វកររចនាសម្ព័ន្ធ",["ce"],"building structures bridges"],
+  ["power","eng","Electrical power engineer","វិស្វករថាមពលអគ្គិសនី",["ee"],"electricity power grid"],
+  ["renew","eng","Renewable energy engineer","វិស្វករថាមពលកកើតឡើងវិញ",["ee"],"solar wind renewable energy"],
+  ["auto","eng","Automotive technician","អ្នកបច្ចេកទេសយានយន្ត",["me"],"cars engines vehicle repair"],
+  ["bim","eng","BIM technician","អ្នកបច្ចេកទេស BIM",["ce"],"building information modeling cad"],
+  ["qs","eng","Quantity surveyor","អ្នកវាស់បរិមាណសំណង់",["ce"],"construction costs estimates"],
+  ["safety","eng","Occupational safety officer","មន្ត្រីសុវត្ថិភាពការងារ",["ce"],"workplace safety risk"],
+  ["electrician","eng","Electrician","ជាងអគ្គិសនី",["ee"],"electrical wiring installation"],
+  ["plumb","eng","Plumber","ជាងទឹក",["ce"],"plumbing pipes water systems"],
+  ["welder","eng","Welder","ជាងផ្សារដែក",["me"],"welding metal fabrication"],
+  ["machinist","eng","Machinist","ជាងម៉ាស៊ីន",["me"],"machine tools manufacturing"],
+  ["refrig","eng","Refrigeration and air conditioning technician","អ្នកបច្ចេកទេសទូរទឹកកក និងម៉ាស៊ីនត្រជាក់",["ee"],"air conditioning refrigeration repair"],
+  ["quality","eng","Quality control inspector","អ្នកត្រួតពិនិត្យគុណភាព",["ch"],"quality inspection manufacturing"],
+  ["construction","eng","Construction supervisor","អ្នកគ្រប់គ្រងការដ្ឋានសំណង់",["ce"],"construction site building"],
+  ["aviation","eng","Aircraft maintenance technician","អ្នកបច្ចេកទេសថែទាំយន្តហោះ",["me","ee"],"aircraft aviation maintenance"],
+
+  // HEALTH
+  ["pharm","health","Pharmacist","ឱសថការី",["ph"],"pharmacy medicine drugs"],
+  ["mid","health","Midwife","ឆ្មប",["nu"],"maternal newborn childbirth"],
+  ["medlab","health","Medical laboratory scientist","អ្នកវិទ្យាសាស្ត្រមន្ទីរពិសោធន៍វេជ្ជសាស្ត្រ",["md"],"medical laboratory blood testing"],
+  ["rad","health","Radiographer","អ្នកថតរូបភាពវេជ្ជសាស្ត្រ",["md"],"medical imaging xray"],
+  ["publich","health","Public health officer","មន្ត្រីសុខាភិបាលសាធារណៈ",["md","nu"],"public health prevention community"],
+  ["nutrition","health","Nutritionist","អ្នកឯកទេសអាហារូបត្ថម្ភ",["md","nu"],"nutrition diet healthy food"],
+  ["psych","health","Psychologist","អ្នកចិត្តវិទ្យា",["md"],"psychology mental wellbeing"],
+  ["counsel","health","Counselor","អ្នកប្រឹក្សាយោបល់",["nu"],"counseling support guidance"],
+  ["vet","health","Veterinarian","ពេទ្យសត្វ",["md"],"animal health veterinary"],
+  ["emergency","health","Emergency medical technician","អ្នកបច្ចេកទេសសង្គ្រោះបន្ទាន់",["nu"],"emergency response first aid"],
+  ["healthinfo","health","Health information officer","មន្ត្រីព័ត៌មានសុខាភិបាល",["ds","it"],"health data records reporting"],
+
+  // BUSINESS
+  ["bank","biz","Banking officer","មន្ត្រីធនាគារ",["fi"],"banking loans customer service"],
+  ["risk","biz","Risk analyst","អ្នកវិភាគហានិភ័យ",["fi","ds"],"risk analysis finance statistics"],
+  ["actuary","biz","Actuary","អ្នកគណនាហានិភ័យធានារ៉ាប់រង",["fi","ac"],"insurance probability mathematics"],
+  ["insure","biz","Insurance officer","មន្ត្រីធានារ៉ាប់រង",["fi"],"insurance claims policies"],
+  ["tax","biz","Tax consultant","ទីប្រឹក្សាពន្ធដារ",["ac"],"tax accounting compliance"],
+  ["auditint","biz","Internal auditor","សវនករផ្ទៃក្នុង",["ac"],"internal audit controls"],
+  ["procure","biz","Procurement officer","មន្ត្រីលទ្ធកម្ម",["ac"],"purchasing tender suppliers"],
+  ["supply","biz","Supply chain analyst","អ្នកវិភាគខ្សែសង្វាក់ផ្គត់ផ្គង់",["ds"],"supply chain inventory logistics"],
+  ["log","biz","Logistics coordinator","អ្នកសម្របសម្រួលភស្តុភារ",["ac"],"logistics transport warehouse"],
+  ["project","biz","Project coordinator","អ្នកសម្របសម្រួលគម្រោង",["hr"],"project coordination planning"],
+  ["ops","biz","Operations manager","អ្នកគ្រប់គ្រងប្រតិបត្តិការ",["hr"],"operations process management"],
+  ["entre","biz","Entrepreneur","សហគ្រិន",["mk"],"startup business innovation"],
+  ["consult","biz","Management consultant","ទីប្រឹក្សាគ្រប់គ្រង",["hr"],"business strategy improvement"],
+  ["compliance","biz","Compliance officer","មន្ត្រីអនុលោមភាព",["ac"],"regulations compliance governance"],
+  ["admin","biz","Administrative officer","មន្ត្រីរដ្ឋបាល",["hr"],"administration office coordination"],
+  ["customs","biz","Customs officer","មន្ត្រីគយ",["ac"],"customs import export trade"],
+  ["realestate","biz","Real estate agent","ភ្នាក់ងារអចលនទ្រព្យ",["mk"],"property housing sales"],
+  ["ecom","biz","E-commerce specialist","អ្នកឯកទេសពាណិជ្ជកម្មអេឡិចត្រូនិក",["mk","it"],"online store ecommerce digital sales"],
+  ["warehouse","biz","Warehouse supervisor","អ្នកគ្រប់គ្រងឃ្លាំង",["ac"],"warehouse inventory stock"],
+  ["customer","biz","Customer service representative","បុគ្គលិកសេវាអតិថិជន",["hr","mk"],"customer support communication"],
+
+  // CREATIVE
+  ["ux","creative","UX/UI designer","អ្នករចនា UX/UI",["gd","it"],"user experience interface design"],
+  ["digital","creative","Digital marketing specialist","អ្នកឯកទេសទីផ្សារឌីជីថល",["mk"],"digital marketing social media seo"],
+  ["content","creative","Content writer","អ្នកនិពន្ធមាតិកា",["mk"],"writing articles content"],
+  ["journal","creative","Journalist","អ្នកសារព័ត៌មាន",["mk"],"journalism reporting news"],
+  ["photo","creative","Photographer","អ្នកថតរូប",["gd"],"photography camera editing"],
+  ["video","creative","Video editor","អ្នកកាត់តវីដេអូ",["gd"],"video editing film production"],
+  ["anim","creative","Animator","អ្នកបង្កើតចលនារូបភាព",["gd","it"],"animation 2d 3d motion"],
+  ["transl","creative","Translator or interpreter","អ្នកបកប្រែ",["mk"],"translation languages interpretation"],
+  ["comm","creative","Communications officer","មន្ត្រីទំនាក់ទំនង",["mk"],"communications public relations"],
+  ["brand","creative","Brand manager","អ្នកគ្រប់គ្រងម៉ាកយីហោ",["mk"],"branding advertising marketing"],
+  ["event","creative","Event planner","អ្នករៀបចំព្រឹត្តិការណ៍",["ho","mk"],"event planning coordination"],
+
+  // PEOPLE
+  ["preschool","people","Early childhood educator","អ្នកអប់រំកុមារតូច",["ed"],"preschool kindergarten children"],
+  ["trainer","people","Vocational trainer","គ្រូបណ្តុះបណ្តាលវិជ្ជាជីវៈ",["ed"],"vocational training practical skills"],
+  ["curriculum","people","Curriculum developer","អ្នកអភិវឌ្ឍកម្មវិធីសិក្សា",["ed"],"curriculum learning materials"],
+  ["librarian","people","Librarian","បណ្ណារក្ស",["ed"],"library books information"],
+  ["social","people","Social worker","បុគ្គលិកសង្គមកិច្ច",["ed"],"community welfare social services"],
+  ["ngo","people","NGO program officer","មន្ត្រីកម្មវិធីអង្គការមិនមែនរដ្ឋាភិបាល",["hr"],"ngo development projects"],
+  ["mne","people","Monitoring and evaluation officer","មន្ត្រីតាមដាន និងវាយតម្លៃ",["ds"],"monitoring evaluation indicators data"],
+  ["policy","people","Policy analyst","អ្នកវិភាគគោលនយោបាយ",["ds"],"public policy research"],
+  ["diplomat","people","Diplomat","អ្នកការទូត",["hr"],"international relations diplomacy"],
+  ["lawassist","people","Paralegal or legal assistant","ជំនួយការផ្នែកច្បាប់",["lw"],"legal documents law research"],
+  ["tour","people","Tour guide","មគ្គុទ្ទេសក៍ទេសចរណ៍",["ho"],"tourism guide travel culture"],
+  ["hotelops","people","Hotel operations officer","មន្ត្រីប្រតិបត្តិការសណ្ឋាគារ",["ho"],"hotel hospitality guest service"],
+  ["front","people","Hotel front desk officer","បុគ្គលិកទទួលភ្ញៀវសណ្ឋាគារ",["ho"],"hotel reception customer service"],
+  ["travel","people","Travel consultant","ទីប្រឹក្សាទេសចរណ៍",["ho"],"travel bookings tourism"],
+  ["chefpastry","people","Pastry chef or baker","ចុងភៅនំ ឬអ្នកដុតនំ",["ho"],"baking pastry desserts"],
+  ["flight","people","Flight attendant","បុគ្គលិកបម្រើការលើយន្តហោះ",["ho"],"aviation cabin crew customer service"],
+  ["civilserv","people","Civil servant","មន្ត្រីរាជការ",["hr"],"government public administration"],
+  ["police","people","Police officer","មន្ត្រីនគរបាល",["lw"],"law enforcement public safety"],
+  ["fire","people","Firefighter","អ្នកពន្លត់អគ្គិភ័យ",["ed"],"fire rescue emergency"],
+  ["humanitarian","people","Humanitarian aid worker","បុគ្គលិកជំនួយមនុស្សធម៌",["hr"],"humanitarian aid disaster response"]
+].map(([id,cat,en,km,m,kw])=>({id,cat,en,km,m,kw}));
+const CAREERS = [...CORE_CAREERS, ...moreCareers.filter(c=>!CORE_CAREERS.some(x=>x.id===c.id))]; // the rest of the page reads the job list by this name
+
+
+/* B1: everyday tasks (type hidden on site) */
+const B1 = [
+ ["b01","R","Pumping up or patching a bicycle tire","បូមខ្យល់កង់ ឬប៉ះកង់ដែលធ្លុះ"],
+ ["b02","R","Putting together a new shelf or table by following the picture","ដំឡើងធ្នើ ឬតុថ្មី ដោយមើលតាមរូបភាពណែនាំ"],
+ ["b03","R","Helping plant or water vegetables at home","ជួយដាំ ឬស្រោចបន្លែនៅផ្ទះ"],
+ ["b04","R","Cooking dinner for your family","ចម្អិនអាហារពេលល្ងាចសម្រាប់គ្រួសារ"],
+ ["b05","R","Carrying and setting up tables and chairs for a family event","លើក និងរៀបចំតុកៅអីសម្រាប់កម្មវិធីគ្រួសារ"],
+ ["b06","I","Searching online for the answer when nobody in your group knows it","ស្វែងរកចម្លើយតាមអ៊ីនធឺណិត នៅពេលគ្មាននរណាម្នាក់ក្នុងក្រុមដឹង"],
+ ["b07","I","Trying to work out the trick behind a magic video","ព្យាយាមស្វែងយល់ពីល្បិចនៅពីក្រោយវីដេអូលេងប៉ាហី"],
+ ["b08","I","Watching a video about why something happens (lightning, earthquakes, why we dream)","មើលវីដេអូអំពីមូលហេតុដែលអ្វីមួយកើតឡើង (ផ្លេកបន្ទោរ ការរញ្ជួយដី ហេតុអ្វីយើងយល់សប្តិ)"],
+ ["b09","I","Wondering why some videos get millions of views and others don't","ឆ្ងល់ថាហេតុអ្វីវីដេអូខ្លះមានអ្នកមើលរាប់លាន តែខ្លះទៀតមិនមាន"],
+ ["b10","I","Reading the ingredients on a snack or medicine packet","អានគ្រឿងផ្សំនៅលើកញ្ចប់នំ ឬកញ្ចប់ថ្នាំ"],
+ ["b11","A","Choosing the filter and layout for a photo before posting it","ជ្រើសរើសហ្វីលធ័រ និងការរៀបចំរូបថត មុនពេលបង្ហោះ"],
+ ["b12","A","Making a short video with music for social media","ធ្វើវីដេអូខ្លីដាក់តន្ត្រីសម្រាប់បណ្តាញសង្គម"],
+ ["b13","A","Writing a funny caption or a birthday message for a friend","សរសេរចំណងជើងកំប្លែង ឬសារជូនពរថ្ងៃកំណើតដល់មិត្តភក្តិ"],
+ ["b14","A","Rearranging your room so it looks nicer","រៀបចំបន្ទប់ឡើងវិញឱ្យមើលទៅស្អាតជាងមុន"],
+ ["b15","A","Singing karaoke or dancing at a party","ច្រៀងខារ៉ាអូខេ ឬរាំនៅពិធីជប់លៀង"],
+ ["b16","S","Explaining homework to a younger sibling or cousin","ពន្យល់កិច្ចការផ្ទះដល់ប្អូន ឬបងប្អូនជីដូនមួយ"],
+ ["b17","S","Checking on a friend who seems quiet or sad","សួរសុខទុក្ខមិត្តភក្តិដែលមើលទៅស្ងាត់ ឬកើតទុក្ខ"],
+ ["b18","S","Helping out at a pagoda ceremony or a relative's wedding","ជួយការងារនៅពិធីបុណ្យនៅវត្ត ឬពិធីមង្គលការសាច់ញាតិ"],
+ ["b19","S","Being the friend people message when they have a problem","ជាមិត្តដែលគេផ្ញើសាររកនៅពេលពួកគេមានបញ្ហា"],
+ ["b20","S","Helping a new student find their way around school","ជួយសិស្សថ្មីឱ្យស្គាល់កន្លែងនានានៅក្នុងសាលា"],
+ ["b21","E","Reselling snacks or clothes to friends for a small profit","លក់បន្តនំ ឬសម្លៀកបំពាក់ឱ្យមិត្តភក្តិ ដើម្បីចំណេញបន្តិចបន្តួច"],
+ ["b22","E","Being the one who decides where the group goes to eat","ជាអ្នកសម្រេចថាក្រុមនឹងទៅញ៉ាំនៅកន្លែងណា"],
+ ["b23","E","Getting friends to join your plan for the weekend","បបួលមិត្តភក្តិឱ្យចូលរួមផែនការចុងសប្តាហ៍របស់អ្នក"],
+ ["b24","E","Organizing a class party or trip","រៀបចំកម្មវិធីជប់លៀង ឬដំណើរកម្សាន្តរបស់ថ្នាក់"],
+ ["b25","E","Bargaining for a better price at the market","តថ្លៃឱ្យបានតម្លៃល្អនៅផ្សារ"],
+ ["b26","C","Keeping track of how you spend your pocket money","កត់ត្រាការចំណាយលុយហោប៉ៅរបស់អ្នក"],
+ ["b27","C","Sorting your phone photos or school files into folders","រៀបចំរូបថតក្នុងទូរសព្ទ ឬឯកសារសាលាចូលក្នុងថតឯកសារ"],
+ ["b28","C","Checking a friend's message or essay for spelling mistakes before they send it","ពិនិត្យរកកំហុសអក្ខរាវិរុទ្ធក្នុងសារ ឬអត្ថបទរបស់មិត្ត មុនពេលគេផ្ញើ"],
+ ["b29","C","Following a recipe exactly, step by step","ធ្វើម្ហូបតាមរូបមន្តឱ្យបានត្រឹមត្រូវ មួយជំហានម្តងៗ"],
+ ["b30","C","Writing a to-do list and ticking things off","សរសេរបញ្ជីការងារត្រូវធ្វើ ហើយគូសធីកនៅពេលធ្វើរួច"]
+].map(([id,t,en,km])=>({id,t,en,km}));
+const ATTENTION = {id:"att", en:"To show you're reading, please choose “Like” for this one.", km:"ដើម្បីបង្ហាញថាអ្នកកំពុងអាន សូមជ្រើសរើស “ចូលចិត្ត” សម្រាប់សំណួរនេះ។"};
+const SCALE = [[1,"😖",{en:"Hate it",km:"ស្អប់"}],[2,"🙁",{en:"Dislike",km:"មិនចូលចិត្ត"}],[3,"😐",{en:"Not sure",km:"មិនប្រាកដ"}],
+  [4,"🙂",{en:"Like",km:"ចូលចិត្ត"}],[5,"😍",{en:"Love it",km:"ចូលចិត្តខ្លាំង"}]];
+
+const B2 = [
+ {k:"q1", en:"Free Saturday, no homework. What do you most likely do?", km:"ថ្ងៃសៅរ៍ទំនេរ គ្មានកិច្ចការផ្ទះ។ តើអ្នកទំនងជានឹងធ្វើអ្វី?", opts:[
+   ["R",{en:"Play sports or fix / build something",km:"លេងកីឡា ឬជួសជុល / សាងសង់អ្វីមួយ"}],
+   ["I",{en:"Watch videos and learn something new",km:"មើលវីដេអូ និងរៀនអ្វីថ្មីៗ"}],
+   ["A",{en:"Draw, play music or edit videos",km:"គូររូប លេងតន្ត្រី ឬកាត់តវីដេអូ"}],
+   ["S",{en:"Hang out with friends or help my family",km:"ដើរលេងជាមួយមិត្តភក្តិ ឬជួយគ្រួសារ"}],
+   ["E",{en:"Work on a small business or side hustle",km:"រកស៊ីតូចតាច ឬធ្វើការងារបន្ថែម"}],
+   ["C",{en:"Clean my room and plan my week",km:"សម្អាតបន្ទប់ និងរៀបចំផែនការសប្តាហ៍"}]]},
+ {k:"q2", en:"Your class wins 500,000 riel for a class party. Which job do you volunteer for?", km:"ថ្នាក់របស់អ្នកឈ្នះប្រាក់ ៥០០.០០០ រៀល សម្រាប់ធ្វើកម្មវិធីជប់លៀង។ តើអ្នកស្ម័គ្រចិត្តធ្វើការងារមួយណា?", opts:[
+   ["Data",{en:"Count the money and work out what we can afford",km:"រាប់លុយ ហើយគណនាថាយើងអាចទិញអ្វីបាន"}],
+   ["People",{en:"Tell everyone and get the whole class involved",km:"ប្រាប់អ្នករាល់គ្នា និងបបួលថ្នាក់ទាំងមូលឱ្យចូលរួម"}],
+   ["Things",{en:"Go buy the food and set up the decorations",km:"ទៅទិញម្ហូប និងរៀបចំការតុបតែង"}],
+   ["Ideas",{en:"Come up with a fun theme for the party",km:"គិតរកប្រធានបទកម្សាន្តសម្រាប់កម្មវិធី"}]]}
+];
+
+const DEAL = [
+ ["comp","Sitting at a computer all day","អង្គុយមុខកុំព្យូទ័រពេញមួយថ្ងៃ",["ds","it","cy","ac"]],
+ ["blood","Seeing blood or injuries","ឃើញឈាម ឬរបួស",["md","nu"]],
+ ["math","Lots of math","គណិតវិទ្យាច្រើន",["ee","ce","ds","fi"]],
+ ["speak","Public speaking","និយាយនៅមុខសាធារណជន",["lw","ed","mk"]],
+ ["strangers","Talking to strangers or customers","និយាយជាមួយមនុស្សមិនស្គាល់ ឬអតិថិជន",["mk","ho"]],
+ ["heat","Working outside in the heat","ធ្វើការនៅខាងក្រៅក្រោមកម្តៅថ្ងៃ",["ce"]],
+ ["night","Night shifts or weekends","ធ្វើការវេនយប់ ឬចុងសប្តាហ៍",["md","ho"]],
+ ["read","Lots of reading and memorizing","អាន និងទន្ទេញច្រើន",["lw","md"]]
+].map(([id,en,km,m])=>({id,en,km,m}));
+
+/* Part C quiz: pole = which option (A/B) points toward the dimension's named pole */
+const QUIZ = [
+ ["p01","soc","A","After a long school week, the best way to recharge is…","ក្រោយពីរៀនហត់មួយសប្តាហ៍ វិធីល្អបំផុតដើម្បីបន្ធូរអារម្មណ៍គឺ…",
+   "Going out with a group of friends","ចេញដើរលេងជាមួយក្រុមមិត្តភក្តិ","A quiet evening at home with music, a phone or a book","ល្ងាចស្ងប់ស្ងាត់នៅផ្ទះ ជាមួយតន្ត្រី ទូរសព្ទ ឬសៀវភៅ"],
+ ["p02","soc","B","At a wedding where you only know a few people, you…","នៅពិធីមង្គលការដែលអ្នកស្គាល់មនុស្សតែពីរបីនាក់ អ្នក…",
+   "Stay mostly with the people you came with","នៅជាមួយតែអ្នកដែលមកជាមួយគ្នាភាគច្រើន","End up chatting with new people","បញ្ចប់ដោយការជជែកជាមួយមនុស្សថ្មីៗ"],
+ ["p03","soc","A","Your group needs someone to present the project. You…","ក្រុមរបស់អ្នកត្រូវការនរណាម្នាក់បង្ហាញគម្រោង។ អ្នក…",
+   "Volunteer to present","ស្ម័គ្រចិត្តបង្ហាញ","Prefer to prepare the slides and let someone else speak","ចូលចិត្តរៀបចំស្លាយ ហើយឱ្យអ្នកផ្សេងនិយាយ"],
+ ["p04","big","B","A teacher starts a new topic. You'd rather get…","គ្រូចាប់ផ្តើមមេរៀនថ្មី។ អ្នកចង់បាន…",
+   "Step-by-step examples first","ឧទាហរណ៍មួយជំហានម្តងៗជាមុនសិន","The big idea first, then examples","គំនិតធំជាមុនសិន ទើបឧទាហរណ៍"],
+ ["p05","big","A","After a movie, you mostly talk about…","ក្រោយមើលកុនចប់ អ្នកភាគច្រើននិយាយអំពី…",
+   "What it meant and what could happen next","អត្ថន័យរបស់វា និងអ្វីដែលអាចកើតឡើងបន្ទាប់","The best scenes, places and characters","ឈុតឆាក ទីកន្លែង និងតួអង្គដែលល្អបំផុត"],
+ ["p06","big","B","You get a new phone. You…","អ្នកទទួលបានទូរសព្ទថ្មី។ អ្នក…",
+   "Set up what you need and start using it","រៀបចំតែអ្វីដែលត្រូវការ ហើយចាប់ផ្តើមប្រើភ្លាម","Explore every setting and try strange features","រុករកការកំណត់គ្រប់យ៉ាង និងសាកមុខងារចម្លែកៗ"],
+ ["p07","heart","B","A friend shows you a song they made, and it's not very good. You…","មិត្តភក្តិបង្ហាញបទចម្រៀងដែលគេនិពន្ធ ប៉ុន្តែវាមិនសូវល្អ។ អ្នក…",
+   "Tell them honestly what to fix","ប្រាប់គេដោយស្មោះត្រង់ថាត្រូវកែអ្វីខ្លះ","Say what you liked first and keep criticism gentle","ប្រាប់ពីចំណុចដែលអ្នកចូលចិត្តជាមុន ហើយរិះគន់ដោយទន់ភ្លន់"],
+ ["p08","heart","A","The class must choose between two trip locations. You vote for…","ថ្នាក់ត្រូវជ្រើសរើសទីកន្លែងដើរលេងមួយក្នុងចំណោមពីរ។ អ្នកបោះឆ្នោតឱ្យ…",
+   "The one most classmates are excited about","កន្លែងដែលមិត្តរួមថ្នាក់ភាគច្រើនរំភើបចង់ទៅ","The cheaper, closer one that makes more sense","កន្លែងដែលថោក ជិត និងសមហេតុផលជាង"],
+ ["p09","heart","B","Two friends are arguing. You try to…","មិត្តភក្តិពីរនាក់កំពុងឈ្លោះគ្នា។ អ្នកព្យាយាម…",
+   "Work out who is right","រកមើលថាអ្នកណាត្រូវ","Help them calm down and make up","ជួយឱ្យពួកគេស្ងប់ចិត្ត និងផ្សះផ្សាគ្នា"],
+ ["p10","plan","A","Your exam is in two weeks. You…","ការប្រឡងរបស់អ្នកនៅសល់ពីរសប្តាហ៍ទៀត។ អ្នក…",
+   "Make a study plan now","រៀបចំផែនការរៀនឥឡូវនេះ","Study when you feel ready, usually closer to the date","រៀននៅពេលមានអារម្មណ៍ថាត្រៀមខ្លួនរួច ជាធម្មតាជិតថ្ងៃប្រឡង"],
+ ["p11","plan","B","On a weekend trip with friends, you like…","ពេលដើរលេងចុងសប្តាហ៍ជាមួយមិត្តភក្តិ អ្នកចូលចិត្ត…",
+   "Deciding what to do as you go","សម្រេចចិត្តថាធ្វើអ្វីតាមដំណើរ","Knowing the plan and times ahead","ដឹងផែនការ និងម៉ោងជាមុន"],
+ ["p12","plan","A","Your school bag right now is…","កាបូបសាលារបស់អ្នកនៅពេលនេះ…",
+   "Organized; you know where everything is","មានរបៀបរៀបរយ ហើយអ្នកដឹងថារបស់នីមួយៗនៅឯណា","A bit messy, but you find things eventually","រញ៉េរញ៉ៃបន្តិច ប៉ុន្តែទីបំផុតក៏រកឃើញដែរ"]
+].map(([id,d,pole,qen,qkm,aen,akm,ben,bkm])=>({id,d,pole,q:{en:qen,km:qkm},a:{en:aen,km:akm},b:{en:ben,km:bkm}}));
+const QUIZ_PAGES = [["p01","p04","p07","p10","p02","p05"],["p08","p11","p03","p06","p09","p12"]];
+const DIMS = ["soc","big","heart","plan"];
+const LEAN = {
+  soc:[{en:"outgoing",km:"ចូលចិត្តជួបមនុស្ស"},{en:"reserved",km:"ចូលចិត្តភាពស្ងប់ស្ងាត់"}],
+  big:[{en:"big-picture",km:"មើលរូបភាពធំ"},{en:"practical",km:"ផ្តោតលើការអនុវត្ត"}],
+  heart:[{en:"heart-first",km:"ប្រើចិត្តមុន"},{en:"head-first",km:"ប្រើហេតុផលមុន"}],
+  plan:[{en:"planner",km:"ចូលចិត្តរៀបផែនការ"},{en:"flexible",km:"បត់បែន"}]
+};
+
+const SUBJECTS = [["math",{en:"Mathematics",km:"គណិតវិទ្យា"}],["physics",{en:"Physics",km:"រូបវិទ្យា"}],["chem",{en:"Chemistry",km:"គីមីវិទ្យា"}],
+  ["bio",{en:"Biology",km:"ជីវវិទ្យា"}],["khmer",{en:"Khmer Literature",km:"អក្សរសាស្ត្រខ្មែរ"}],["english",{en:"English",km:"ភាសាអង់គ្លេស"}],["ict",{en:"ICT / Computer",km:"ICT / កុំព្យូទ័រ"}]];
+const GRADE_PTS = {A:100,B:80,C:60,D:40,EF:20};
+
+const SELF = [
+ {en:"Math and working with numbers",km:"គណិតវិទ្យា និងការងារជាមួយលេខ"},
+ {en:"Solving logic problems step by step",km:"ដោះស្រាយបញ្ហាតក្កវិជ្ជាមួយជំហានម្តងៗ"},
+ {en:"Reading and writing in Khmer",km:"ការអាន និងសរសេរភាសាខ្មែរ"},
+ {en:"Speaking and writing English",km:"ការនិយាយ និងសរសេរភាសាអង់គ្លេស"},
+ {en:"Drawing, design and making things look good",km:"គូររូប រចនា និងធ្វើឱ្យអ្វីៗមើលទៅស្អាត"},
+ {en:"Using tools and fixing things with your hands",km:"ប្រើឧបករណ៍ និងជួសជុលរបស់របរដោយដៃ"},
+ {en:"Talking to people and persuading them",km:"និយាយជាមួយមនុស្ស និងបញ្ចុះបញ្ចូលពួកគេ"},
+ {en:"Staying organized and catching small mistakes",km:"រៀបចំអ្វីៗឱ្យមានរបៀប និងរកឃើញកំហុសតូចៗ"},
+ {en:"Using computers, apps and learning new software",km:"ប្រើកុំព្យូទ័រ កម្មវិធី និងរៀនកម្មវិធីថ្មីៗ"}
+];
+const SELF_SCALE = [[1,"🐢",{en:"Much weaker",km:"ខ្សោយជាងច្រើន"}],[2,"🌱",{en:"Weaker",km:"ខ្សោយជាង"}],[3,"🙂",{en:"Average",km:"មធ្យម"}],
+  [4,"⭐",{en:"Better",km:"ល្អជាង"}],[5,"🌟",{en:"Much better",km:"ល្អជាងច្រើន"}]];
+const SKILL_EVIDENCE = {
+  "Math":[["math"],1], "Logic":[["math","physics"],2], "Khmer":[["khmer"],3], "English":[["english"],4],
+  "Design":[[],5], "Hands-on":[[],6], "People":[[],7], "Organization":[[],8], "Computer":[["ict"],9], "Science":[["bio","chem"],null]
+};
+
+/* ===== State ===== */
+const uid = () => (crypto.randomUUID ? crypto.randomUUID() : "r"+Date.now().toString(36)+Math.random().toString(36).slice(2,8));
+const S = { id:uid(), started:new Date(), lang:null, consent:false, role:null, yr2:null,
+  univ:"", major:"", majorOther:"", year:"", degreeMajor:"", degreeOther:"", job:"", jobOther:"", yearsWork:"", related:"",
+  sat:null, again:null, changed:null, advice:"",
+  dreamMode:null, dream:null, dreamText:"", fields:[], fieldNone:false, jobQ:"", jobCat:"tech", b1:{}, b2:{}, deal:[],
+  persMode:null, persType:"", persAlsoQuiz:false, quiz:{},
+  grades:{}, track:null, self:{}, fit:null, comment:"", contact:"", drawOk:false, sentResp:false, scores:null, _pop:null };
+const order = (()=>{ const ids=B1.map(x=>x.id); for(let i=ids.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ids[i],ids[j]]=[ids[j],ids[i]];}
+  ids.splice(12+Math.floor(Math.random()*10),0,ATTENTION.id); return ids; })();
+const B1_PAGES = [order.slice(0,8),order.slice(8,16),order.slice(16,24),order.slice(24)];
+let cur = 0, err = "";
+
+/* ===== Text helpers ===== */
+const KD = "០១២៣៤៥៦៧៨៩";
+const kn = x => S.lang==="km" ? String(x).replace(/\d/g,d=>KD[d]) : String(x);
+const L = o => (o && typeof o==="object") ? (o[S.lang]||o.en) : String(o);
+function t(k,v={}){ const s=STR[k]; const base = s ? s[S.lang==="km"?1:0] : k;
+  return base.replace(/\{(\w+)\}/g,(_,n)=> typeof v[n]==="number" ? kn(v[n]) : String(v[n]??"")); }
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const prizesText = () => CONFIG.PRIZES.map(p=>`${kn(p.qty)} × ${esc(L(p))}`).join(", ");
+
+/* ===== Scoring: formula 2.0 ===== */
+function avg(a){ return a.length? a.reduce((x,y)=>x+y,0)/a.length : null; }
+function riasec(){ const o={}; for(const ty of "RIASEC"){ const v=B1.filter(b=>b.t===ty).map(b=>S.b1[b.id]).filter(Number.isFinite);
+  o[ty]= v.length? avg(v) : 1; } return o; }
+function skillScore(name){ const [subs,selfN]=SKILL_EVIDENCE[name];
+  const g=avg(subs.map(s=>GRADE_PTS[S.grades[s]]).filter(Number.isFinite));
+  const r=selfN? S.self[selfN] : undefined; const sr=Number.isFinite(r)? (r-1)/4*100 : null;
+  if(g!==null && sr!==null) return 0.6*g+0.4*sr; if(g!==null) return g; if(sr!==null) return sr; return null; }
+function parseType(s){ const m=String(s||"").toUpperCase().replace(/\s+/g,"").match(/^([EI])([NS])([TF])([JP])(?:-?[AT])?$/); return m? m.slice(1,5).join("") : null; }
+const takesQuiz = () => S.persMode==="quiz" || (S.persMode==="type" && S.persAlsoQuiz);
+function quizScores(){ const o={};
+  for(const d of DIMS){ const v=QUIZ.filter(q=>q.d===d).map(q=>{ const a=S.quiz[q.id]; if(!a) return null;
+      const towardA=[100,67,33,0][a-1]; return q.pole==="A"? towardA : 100-towardA; }).filter(x=>x!==null);
+    if(v.length<3) return null; o[d]=avg(v); }
+  return o; }
+function typeScores(){ const ty=parseType(S.persType); if(!ty) return null;
+  return {soc:ty[0]==="E"?80:20, big:ty[1]==="N"?80:20, heart:ty[2]==="F"?80:20, plan:ty[3]==="J"?80:20}; }
+function persScores(){ const a= S.persMode==="type"? typeScores() : null; const b= takesQuiz()? quizScores() : null;
+  if(a&&b){ const o={}; DIMS.forEach(d=>o[d]=(a[d]+b[d])/2); return o; } return a||b||null; }
+function persFit(m,ps){ if(!ps) return null; const v=[];
+  DIMS.forEach((d,i)=>{ const c=m.pers[i]; if(c==="H"||c==="L") v.push(100-Math.abs(ps[d]-(c==="H"?75:25))); });
+  return v.length? avg(v) : null; }
+/* Job fit: dream job's majors = 100, other majors in the same field = 50.
+   No dream job: majors in a chosen field = 100. "Don't know yet" = no job score (left out of the overall). */
+function jobFit(m){
+  if(S.dreamMode==="job" && S.dream && S.dream!=="custom"){
+    const c=CAREERS.find(x=>x.id===S.dream); if(!c) return null;
+    if(c.m.includes(m.id)) return 100;
+    const f=FIELDS.find(x=>x.id===c.cat); return f && f.m.includes(m.id) ? 50 : 0; }
+  if(!S.fields.length) return null;
+  return S.fields.some(id=>FIELDS.find(f=>f.id===id).m.includes(m.id)) ? 100 : 0;
+}
+function score(){
+  const ra=riasec(), s={}; for(const ty in ra) s[ty]=(ra[ty]-1)/4;
+  const ps=persScores();
+  const out=MAJORS.map(m=>{
+    const lt=m.code.split("-");
+    const R=100*(lt.length===3? (3*s[lt[0]]+2*s[lt[1]]+s[lt[2]])/6 : (3*s[lt[0]]+2*s[lt[1]])/5);
+    const p=[]; if(S.b2.q1) p.push(S.b2.q1===lt[0]?100: lt.slice(1).includes(S.b2.q1)?50:0);
+    if(S.b2.q2) p.push(m.focus.includes(S.b2.q2)?100:0);
+    const P=p.length? avg(p) : R;
+    const k=Math.min(2,DEAL.filter(d=>S.deal.includes(d.id)&&d.m.includes(m.id)).length);
+    const interest=(0.8*R+0.2*P)*(1-0.15*k);
+    const job=jobFit(m);
+    const sk=m.skills.map(skillScore).filter(v=>v!==null); const strength= sk.length? avg(sk) : null;
+    const pers=persFit(m,ps);
+    const parts=[[job,.25],[interest,.30],[pers,.20],[strength,.25]].filter(([v])=>v!==null);
+    const overall=parts.reduce((a,[v,w])=>a+v*w,0)/parts.reduce((a,[,w])=>a+w,0);
+    return {id:m.id,job,interest,pers,strength,overall,R,P,k};
+  });
+  out.sort((a,b)=> b.overall-a.overall || b.interest-a.interest);
+  return {majors:out, ra, ps};
+}
+function topCode(ra){ return Object.entries(ra).sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0]); }
+
+/* ===== Saving (Google Sheet via Apps Script) ===== */
+function send(sheet,row){ if(!CONFIG.ENDPOINT) return Promise.resolve();
+  return fetch(CONFIG.ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({sheet,row})}).catch(()=>{}); }
+function responseRow(res){
+  const now=new Date(), dur=Math.round((now-S.started)/1000);
+  const b1vals=B1.map(b=>S.b1[b.id]); const straight=b1vals.every(v=>v===b1vals[0]);
+  const ownId = S.role==="student"? S.major : S.degreeMajor;
+  const rank = MAJORS.some(m=>m.id===ownId)? res.majors.findIndex(m=>m.id===ownId)+1 : "";
+  const satisfied = (S.sat>=4 && S.again==="yes");
+  const valid = dur>=CONFIG.MIN_SECONDS && S.b1.att===4 && !straight;
+  const row={ response_id:S.id, submitted_at:now.toISOString(), started_at:S.started.toISOString(), duration_sec:dur,
+    formula_version:CONFIG.FORMULA_VERSION, lang:S.lang, device:/Mobi|Android/i.test(navigator.userAgent)?"mobile":"desktop",
+    role:S.role, university:S.univ, major:S.major, major_other:S.majorOther, year:S.year,
+    degree_major:S.degreeMajor, degree_other:S.degreeOther, job:S.job, job_other:S.jobOther, years_working:S.yearsWork, job_related:S.related,
+    satisfaction:S.sat, choose_again:S.again, satisfied_group:satisfied, changed_major:S.changed||"", advice:S.advice,
+    dream_mode:S.dreamMode||"", dream_job: S.dreamMode==="job"? (S.dream||"") : "", dream_job_text: S.dreamMode==="job"&&S.dream==="custom"? S.dreamText : "",
+    fields: (S.dreamMode==="unsure" || S.dream==="custom")? S.fields.join("|") : "", field_unknown: S.dreamMode==="unsure" && S.fieldNone };
+  B1.forEach(b=>row[b.id]=S.b1[b.id]);
+  Object.assign(row,{ attention_value:S.b1.att, attention_pass:S.b1.att===4, straightline:straight, too_fast:dur<CONFIG.MIN_SECONDS, valid,
+    b2_q1:S.b2.q1||"", b2_q2:S.b2.q2||"", dealbreakers:S.deal.join("|"),
+    pers_mode:S.persMode, pers_type:parseType(S.persType)||"", pers_quiz_taken:takesQuiz() });
+  QUIZ.forEach(q=>row[q.id]=S.quiz[q.id]??"");
+  DIMS.forEach(d=>row["pers_"+d]= res.ps? +res.ps[d].toFixed(1) : "");
+  SUBJECTS.forEach(([k])=>row["grade_"+k]=S.grades[k]||""); row.track=S.track;
+  SELF.forEach((_,i)=>row["self_"+(i+1)]=S.self[i+1]??"");
+  for(const ty of "RIASEC") row["avg_"+ty]=+res.ra[ty].toFixed(2);
+  row.top1=res.majors[0].id; row.top2=res.majors[1].id; row.top3=res.majors[2].id;
+  row.own_major_rank=rank; row.own_in_top3= rank!=="" ? rank<=3 : "";
+  const r1 = v => v===null? null : +v.toFixed(1);
+  row.scores_json=JSON.stringify(res.majors.map(m=>[m.id,r1(m.overall),r1(m.job),r1(m.interest),r1(m.pers),r1(m.strength)]));
+  return row;
+}
+
+/* ===== UI helpers ===== */
+function btn(key,v,html,sel,cls="pill"){ const pop = S._pop===key+"|"+v ? " pop":"";
+  return `<button type="button" class="${cls}${pop}" data-set="${key}" data-v="${esc(v)}" aria-pressed="${String(sel)===String(v)}">${html}</button>`; }
+function pills(key,opts,sel,cls="pills"){ return `<div class="${cls}" role="group">${opts.map(([v,l])=>btn(key,v,esc(L(l)),sel)).join("")}</div>`; }
+function emojiScale(key,items,sel,cls="scale"){ return `<div class="${cls}" role="group">${items.map(([v,e,l])=>btn(key,v,`<span class="emo" aria-hidden="true">${e}</span><span>${esc(L(l))}</span>`,sel)).join("")}</div>`; }
+function toggles(key,list,sel){ return `<div class="pills" role="group">${list.map(x=>
+  `<button type="button" class="pill" data-toggle="${key}" data-v="${x.id}" aria-pressed="${sel.includes(x.id)}">${esc(L(x))}</button>`).join("")}</div>`; }
+const majorOptions = sel => `<option value="">${t("choose")}</option>${MAJORS.map(m=>`<option value="${m.id}" ${sel===m.id?"selected":""}>${esc(L(m))}</option>`).join("")}<option value="other" ${sel==="other"?"selected":""}>${t("other")}</option>`;
+function get(path){ return path.split(".").reduce((o,k)=>o==null?undefined:o[k],S); }
+function put(path,v){ const ks=path.split("."); let o=S; ks.slice(0,-1).forEach(k=>o=o[k]); o[ks.at(-1)]=v; }
+const fmt = v => v===null? "—" : kn(Math.round(v))+"%";
+const nums5 = [[1,"1"],[2,"2"],[3,"3"],[4,"4"],[5,"5"]].map(([v,l])=>[v,{en:l,km:kn(l)}]);
+
+/* Original mascot (drawn here, free to use) */
+function cat(w=150){ return `<svg class="cat" viewBox="0 0 200 212" width="${w}" role="img" aria-label="cat">
+  <path class="tail" d="M150 182 C192 178 196 132 172 118" fill="none" stroke="var(--fur-dark)" stroke-width="14" stroke-linecap="round"/>
+  <ellipse cx="100" cy="166" rx="55" ry="40" fill="var(--fur)"/>
+  <ellipse cx="100" cy="174" rx="30" ry="24" fill="var(--cream)"/>
+  <ellipse cx="78" cy="202" rx="15" ry="9" fill="var(--fur)"/><ellipse cx="122" cy="202" rx="15" ry="9" fill="var(--fur)"/>
+  <path d="M52 72 L44 22 L90 48 Z" fill="var(--fur)"/><path d="M58 63 L54 35 L80 51 Z" fill="var(--cat-pink)"/>
+  <path d="M148 72 L156 22 L110 48 Z" fill="var(--fur)"/><path d="M142 63 L146 35 L120 51 Z" fill="var(--cat-pink)"/>
+  <ellipse cx="100" cy="94" rx="57" ry="50" fill="var(--fur)"/>
+  <path d="M100 48 v14 M87 50 l3 12 M113 50 l-3 12" stroke="var(--fur-dark)" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="100" cy="112" rx="25" ry="17" fill="var(--cream)"/>
+  <g class="blink"><ellipse cx="80" cy="93" rx="7" ry="9" fill="var(--cat-ink)"/><circle cx="82.5" cy="89.5" r="2.6" fill="#fff"/></g>
+  <g class="blink"><ellipse cx="120" cy="93" rx="7" ry="9" fill="var(--cat-ink)"/><circle cx="122.5" cy="89.5" r="2.6" fill="#fff"/></g>
+  <circle cx="65" cy="110" r="8" fill="var(--cat-pink)" opacity=".6"/><circle cx="135" cy="110" r="8" fill="var(--cat-pink)" opacity=".6"/>
+  <path d="M95 105 h10 l-5 6 z" fill="#E86A8A"/>
+  <path d="M92 114 q4 5 8 0 q4 5 8 0" fill="none" stroke="var(--cat-ink)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M38 106 h22 M40 117 l20 -5 M162 106 h-22 M160 117 l-20 -5" stroke="var(--cat-ink)" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+  <g class="wave"><path d="M146 152 Q170 130 168 106" stroke="var(--fur)" stroke-width="22" stroke-linecap="round" fill="none"/>
+    <circle cx="168" cy="102" r="13" fill="var(--fur)"/><circle cx="168" cy="104" r="5" fill="var(--cat-pink)"/></g>
+</svg>`; }
+const mascot = (text,w) => `<div class="mascot"><div class="bubble">${text}</div>${cat(w)}</div>`;
+
+/* ===== Section explainer ===== */
+function info(k,whatK,whyK,noteK){ return `<div class="info"><div class="hd">ℹ️ ${t("infoHd")}</div>
+  <div class="row"><span>🔎</span><span><b>${t("whatL")}</b> ${t(whatK||k+"What")}</span></div>
+  <div class="row"><span>💡</span><span><b>${t("whyL")}</b> ${t(whyK||k+"Why")}</span></div>
+  <div class="row"><span>🔒</span><span><b>${t("noteL")}</b> ${t(noteK||k+"Note")}</span></div></div>`; }
+
+/* ===== Job picker ===== */
+function jobMatches(c,q){ const cat=CATS.find(x=>x[0]===c.cat)[1];
+  return [c.en,c.km,c.kw,cat.en,cat.km].join(" ").toLowerCase().includes(q); }
+function trayHTML(){ if(!S.dream) return `<span class="muted" style="font-size:14px">${t("jEmpty")}</span>`;
+  const label = S.dream==="custom"? esc(S.dreamText) : esc(L(CAREERS.find(x=>x.id===S.dream)));
+  return `<button type="button" class="pill" data-act="clearDream" aria-label="${label} ✕">⭐ ${label}<span class="x" aria-hidden="true">✕</span></button><span class="note">${t("jChange")}</span>`; }
+function catsHTML(){ const searching=!!S.jobQ.trim();
+  return CATS.map(([id,l])=>`<button type="button" class="pill" data-cat="${id}" aria-pressed="${!searching && S.jobCat===id}">${esc(L(l))}</button>`).join(""); }
+function listHTML(){ const q=S.jobQ.trim().toLowerCase();
+  const items = q? CAREERS.filter(c=>jobMatches(c,q)) : CAREERS.filter(c=>c.cat===S.jobCat);
+  const add = q? `<button type="button" class="pill" data-act="addDream" style="border-style:dashed">➕ ${t("jAdd",{q:esc(S.jobQ.trim())})}</button>` : "";
+  if(q && !items.length) return `<p class="muted">${t("jNoMatch",{q:esc(S.jobQ.trim())})}</p><div class="pills">${add}</div>`;
+  const head = q? t("jResults") : esc(L(CATS.find(x=>x[0]===S.jobCat)[1]));
+  return `<div class="listHead">${head}</div><div class="pills" role="group">${items.map(c=>
+    `<button type="button" class="pill" data-pick="${c.id}" aria-pressed="${S.dream===c.id}">${esc(L(c))}</button>`).join("")}${add}</div>`; }
+function fieldsHTML(){ const custom = S.dreamMode==="job";
+  return `<div class="card"><div class="q"><span class="lab">${t(custom?"fTitleCustom":"fTitle")}</span>
+    <div class="fields" role="group">${FIELDS.map(f=>`<button type="button" class="pill" data-field="${f.id}" aria-pressed="${S.fields.includes(f.id)}"><span>${f.icon} ${esc(L(f))}</span><small>${esc(L(f.ex))}</small></button>`).join("")}
+    ${custom?"":`<button type="button" class="pill wide" data-field="none" aria-pressed="${S.fieldNone}"><span>🤔 ${t("fNone")}</span></button>`}</div></div></div>`; }
+function updateCareers(){
+  const set=(id,h)=>{ const el=document.getElementById(id); if(el) el.innerHTML=h; };
+  set("tray",trayHTML()); set("cats",catsHTML()); set("jobList",listHTML());
+  const e=document.getElementById("errBox"); if(e) e.remove(); err=""; }
+
+/* ===== Screens ===== */
+function screens(){
+  const list=["lang","consent","about"];
+  if(S.role==="student" && S.yr2==="no") return [...list,"ineligible"];
+  const s=[...list,"background","satisfaction","careers","b1_0","b1_1","b1_2","b1_3","b2","deal","pers"];
+  if(takesQuiz()) s.push("quiz_0","quiz_1");
+  return [...s,"grades","self","results","draw","thanks"];
+}
+const R = {
+ lang:()=>`<div class="center">${mascot(t("hi"),150)}
+   <h1>ជ្រើសរើសភាសា<br><span class="muted" style="font-size:.8em">Choose your language</span></h1>
+   <div class="langs">
+     <button type="button" class="btn primary" data-lang="km">ភាសាខ្មែរ<small>Khmer</small></button>
+     <button type="button" class="btn" data-lang="en">English<small>អង់គ្លេស</small></button>
+   </div></div>`,
+ consent:()=>`
+  <span class="eyebrow">${t("cEyebrow")}</span>
+  <h1>${t("cTitle")}</h1>
+  <div class="card sec"><h3>🪁 ${t("whoH")}</h3><p>${t("who")}</p></div>
+  <div class="card sec"><h3>🎯 ${t("whyH")}</h3><p>${t("why1")}</p><p>${t("why2")}</p></div>
+  <div class="card sec"><h3>🔍 ${t("howH")}</h3><p>${t("how")}</p><p>${t("doIt")}</p><p>${t("c3")}</p></div>
+  <div class="card sec"><h3>🔒 ${t("dataH")}</h3>
+    <ul class="plain"><li>${t("c2")}</li><li>${t("cCollect")}</li><li>${t("cUse")}</li><li>${t("c1")}</li>
+      <li><span>${t("c4",{prizes:prizesText(),close:kn(CONFIG.CLOSE_DATE),page:esc(CONFIG.DRAW_PAGE),date:kn(CONFIG.DRAW_DATE)})}</span></li>
+      <li>${t("c5")}</li><li>${t("c6")}</li>${CONFIG.CONTACT?`<li>${t("cContact",{c:esc(CONFIG.CONTACT)})}</li>`:""}</ul>
+    <label class="check"><input type="checkbox" data-check="consent" ${S.consent?"checked":""}><span>${t("cAgree")}</span></label>
+  </div>`,
+ about:()=>`
+  <span class="eyebrow">${t("aEyebrow")}</span><h2>${t("aTitle")}</h2>
+  <div class="card">
+    <div class="q"><span class="lab">${t("aRole")}</span>${pills("role",[["student",{en:STR.aStudent[0],km:STR.aStudent[1]}],["worker",{en:STR.aWorker[0],km:STR.aWorker[1]}]],S.role)}</div>
+    ${S.role==="student"?`<div class="q"><span class="lab">${t("aYear2")}</span>${pills("yr2",[["yes",{en:"Yes",km:"បាទ/ចាស"}],["no",{en:"No, I'm in year 1",km:"ទេ ខ្ញុំជានិស្សិតឆ្នាំទី ១"}]],S.yr2)}</div>`:""}
+  </div>`,
+ ineligible:()=>`<div class="center">${mascot("🙏",130)}<h1>${t("inTitle")}</h1><p>${t("inText")}</p></div>`,
+ background:()=> S.role==="student" ? `
+  <span class="eyebrow">${t("bsEyebrow")}</span><h2>${t("bsTitle")}</h2>
+  ${info("bg")}
+  <div class="card">
+    <div class="q"><label for="univ">${t("univ")}</label><input type="text" id="univ" data-k="univ" value="${esc(S.univ)}" autocomplete="organization"></div>
+    <div class="q"><label for="major">${t("major")}</label><select id="major" data-k="major">${majorOptions(S.major)}</select>
+      ${S.major==="other"?`<input type="text" data-k="majorOther" placeholder="${t("yourMajor")}" value="${esc(S.majorOther)}">`:""}</div>
+    <div class="q"><span class="lab">${t("yearStudy")}</span>${pills("year",[2,3,4].map(n=>[String(n),{en:`Year ${n}`,km:`ឆ្នាំទី ${KD[n]}`}]).concat([["5",{en:STR.year5[0],km:STR.year5[1]}]]),S.year)}</div>
+  </div>` : `
+  <span class="eyebrow">${t("bwEyebrow")}</span><h2>${t("bwTitle")}</h2>
+  ${info("bg")}
+  <div class="card">
+    <div class="q"><label for="degreeMajor">${t("degMajor")}</label><select id="degreeMajor" data-k="degreeMajor">${majorOptions(S.degreeMajor)}</select>
+      ${S.degreeMajor==="other"?`<input type="text" data-k="degreeOther" placeholder="${t("yourMajor")}" value="${esc(S.degreeOther)}">`:""}</div>
+    <div class="q"><label for="job">${t("curJob")}</label><select id="job" data-k="job"><option value="">${t("choose")}</option>${CAREERS.map(c=>`<option value="${c.id}" ${S.job===c.id?"selected":""}>${esc(L(c))}</option>`).join("")}<option value="other" ${S.job==="other"?"selected":""}>${t("other")}</option></select>
+      ${S.job==="other"?`<input type="text" data-k="jobOther" placeholder="${t("jobTitle")}" value="${esc(S.jobOther)}">`:""}</div>
+    <div class="q"><span class="lab">${t("howLong")}</span>${pills("yearsWork",[["<1","w1"],["1-2","w2"],["3-5","w3"],["6+","w4"]].map(([v,k])=>[v,{en:STR[k][0],km:STR[k][1]}]),S.yearsWork)}</div>
+    <div class="q"><span class="lab">${t("related")}</span>${pills("related",[["yes","yes"],["somewhat","somewhat"],["no","no"]].map(([v,k])=>[v,{en:STR[k][0],km:STR[k][1]}]),S.related)}</div>
+  </div>`,
+ satisfaction:()=>`
+  <span class="eyebrow">${t("sEyebrow")}</span><h2>${t(S.role==="student"?"sTitleS":"sTitleW")}</h2>
+  ${info("sat")}
+  <div class="card">
+    <div class="q"><span class="lab">${t(S.role==="student"?"satS":"satW")}</span>
+      ${pills("sat",nums5,S.sat,"scale")}<div class="ends"><span>${t("notAtAll")}</span><span>${t("verySat")}</span></div></div>
+    <div class="q"><span class="lab">${t("again")}</span>${pills("again",[["yes","yes"],["no","no"],["unsure","notSure"]].map(([v,k])=>[v,{en:STR[k][0],km:STR[k][1]}]),S.again)}</div>
+    <div class="q"><span class="lab">${t("changed")}</span>${pills("changed",[["no","chNo"],["once","chOnce"],["more","chMore"]].map(([v,k])=>[v,{en:STR[k][0],km:STR[k][1]}]),S.changed)}</div>
+    <div class="q"><label for="advice">${t("advice")}</label><textarea id="advice" data-k="advice">${esc(S.advice)}</textarea></div>
+  </div>`,
+ careers:()=>`
+  <span class="eyebrow">${t("jEyebrow")}</span><h2>${t("jTitle")}</h2>
+  ${info("j")}
+  <div class="choice" role="group">
+    ${btn("dreamMode","job",`<span>🌟 ${t("jYes")}</span><small>${t("jYesSub")}</small>`,S.dreamMode)}
+    ${btn("dreamMode","unsure",`<span>🧭 ${t("jNo")}</span><small>${t("jNoSub")}</small>`,S.dreamMode)}
+  </div>
+  ${S.dreamMode==="job"?`<div class="card">
+    <span class="lab" style="font-weight:600">${t("jChosen")}</span>
+    <div class="tray" id="tray">${trayHTML()}</div>
+    <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input type="search" id="jobSearch" placeholder="${t("jSearch")}" value="${esc(S.jobQ)}" autocomplete="off" aria-label="${t("jSearch")}"></div>
+    <div class="cats" id="cats" role="group">${catsHTML()}</div>
+    <div id="jobList" style="display:grid;gap:8px">${listHTML()}</div>
+  </div>`:""}
+  ${S.dreamMode==="unsure" || (S.dreamMode==="job" && S.dream==="custom") ? fieldsHTML() : ""}`,
+ b1:(pg)=>`
+  <span class="eyebrow">${t("b1Eyebrow",{p:pg+1})}</span><h2>${t("b1Title")}</h2><p class="muted">${t("b1Sub")}</p>
+  ${pg===0? info("b1") : ""}
+  <div class="card">${B1_PAGES[pg].map(id=>{ const it= id==="att"? ATTENTION : B1.find(b=>b.id===id);
+    return `<div class="item"><p>${esc(L(it))}</p>${emojiScale("b1."+id,SCALE,S.b1[id])}</div>`; }).join("")}</div>`,
+ b2:()=>`
+  <span class="eyebrow">${t("b2Eyebrow")}</span><h2>${t("b2Title")}</h2><p class="muted">${t("optional")}</p>
+  ${info("b2")}
+  ${B2.map(q=>`<div class="card q"><span class="lab">${esc(L(q))}</span>${pills("b2."+q.k,q.opts,S.b2[q.k])}</div>`).join("")}`,
+ deal:()=>`
+  <span class="eyebrow">${t("dEyebrow")}</span><h2>${t("dTitle")}</h2>
+  ${info("d")}
+  <div class="card">${toggles("deal",DEAL,S.deal)}</div>`,
+ pers:()=>`
+  <span class="eyebrow">${t("pEyebrow")}</span><h2>${t("pTitle")}</h2>
+  ${info("p","pWhat","pWhy","pInfoNote")}
+  <div class="choice" role="group">
+    ${btn("persMode","type",`<span>🔤 ${t("pKnow")}</span><small>${t("pKnowSub")}</small>`,S.persMode)}
+    ${btn("persMode","quiz",`<span>🐾 ${t("pQuiz")}</span><small>${t("pQuizSub")}</small>`,S.persMode)}
+  </div>
+  ${S.persMode==="type"?`<div class="card">
+    <div class="q"><label for="persType">${t("pType")}</label>
+      <input type="text" id="persType" data-k="persType" maxlength="7" autocomplete="off" autocapitalize="characters" spellcheck="false"
+        style="text-transform:uppercase;letter-spacing:.15em;font-size:20px;font-family:var(--display)" placeholder="${t("pTypePh")}" value="${esc(S.persType)}"></div>
+    <label class="check"><input type="checkbox" data-check="persAlsoQuiz" ${S.persAlsoQuiz?"checked":""}><span>${t("pAlso")}</span></label>
+  </div>`:""}
+  <div class="tip"><span>${t("pNote",{link:`<a href="${esc(CONFIG.FULL_TEST_URL)}" target="_blank" rel="noopener">${esc(CONFIG.FULL_TEST_NAME)}</a>`})}</span></div>`,
+ quiz:(pg)=>`
+  <span class="eyebrow">${t("qEyebrow",{p:pg+1})}</span><h2>${t("qTitle")}</h2>
+  ${pg===0? info("q") : ""}
+  <div class="card">${QUIZ_PAGES[pg].map(id=>{ const q=QUIZ.find(x=>x.id===id);
+    return `<div class="item"><p>${esc(L(q.q))}</p>
+      <div class="ab"><div class="opt"><span class="badge">A</span><span>${esc(L(q.a))}</span></div><div class="opt b"><span class="badge">B</span><span>${esc(L(q.b))}</span></div></div>
+      <div class="scale scale4" role="group">${[[1,"defA"],[2,"probA"],[3,"probB"],[4,"defB"]].map(([v,k])=>btn("quiz."+id,v,`<span>${t(k)}</span>`,S.quiz[id])).join("")}</div></div>`; }).join("")}</div>`,
+ grades:()=>`
+  <span class="eyebrow">${t("gEyebrow")}</span><h2>${t("gTitle")}</h2>
+  ${info("g")}
+  <div class="card">${SUBJECTS.map(([k,l])=>`<div class="item"><p>${esc(L(l))}</p>${pills("grades."+k,[["A","A"],["B","B"],["C","C"],["D","D"],["EF","E/F"],["none",{en:STR.didnt[0],km:STR.didnt[1]}]],S.grades[k],"grade")}</div>`).join("")}
+    <div class="item"><p>${t("track")}</p>${pills("track",[["science",{en:STR.sci[0],km:STR.sci[1]}],["social",{en:STR.soc[0],km:STR.soc[1]}]],S.track)}</div></div>`,
+ self:()=>`
+  <span class="eyebrow">${t("skEyebrow")}</span><h2>${t("skTitle")}</h2>
+  ${info("sk")}
+  <div class="card">${SELF.map((x,i)=>`<div class="item"><p>${esc(L(x))}</p>${emojiScale("self."+(i+1),SELF_SCALE,S.self[i+1])}</div>`).join("")}</div>`,
+ results:()=>{ const res=S.scores; const top=res.majors.slice(0,3); const code=topCode(res.ra); const medals=["🥇","🥈","🥉"];
+  const lean = res.ps? DIMS.map(d=>L(LEAN[d][res.ps[d]>=50?0:1])) : [];
+  return `<span class="eyebrow">${t("rEyebrow")}</span><h1>${t("rTitle")}</h1>
+  ${info("r","rWhat","rWhy","rInfoNote")}
+  <div class="code"><span class="lab">${t("rCode")}</span>${code.map(ty=>`<span class="tag">${ty} · ${esc(L(TYPES[ty]))}</span>`).join("")}</div>
+  ${lean.length?`<div class="code"><span class="lab">${t("rLean")}</span>${lean.map(w=>`<span class="tag m">${esc(w)}</span>`).join("")}</div>`:""}
+  ${top.map((m,i)=>{ const maj=MAJORS.find(x=>x.id===m.id); return `<div class="card result">
+    <div class="rank"><h3><span class="medal" aria-hidden="true">${medals[i]}</span>${esc(L(maj))}</h3><span class="big">${fmt(m.overall)}</span></div>
+    <div class="metrics">
+      <div class="metric"><span>${t("mJob")}</span><b>${m.job===null?t("jSkipped"):fmt(m.job)}</b></div>
+      <div class="metric"><span>${t("mInt")}</span><b>${fmt(m.interest)}</b></div>
+      <div class="metric"><span>${t("mPers")}</span><b>${fmt(m.pers)}</b></div>
+      <div class="metric"><span>${t("mStr")}</span><b>${m.strength===null?t("notEnough"):fmt(m.strength)}</b></div></div>
+    <p class="note">${t("adm")} ${esc(L(ADM[maj.adm]))}</p></div>`; }).join("")}
+  <div class="card">
+    <div class="q"><span class="lab">${t("rFit")}</span>${pills("fit",nums5,S.fit,"scale")}<div class="ends"><span>${t("notAtAll")}</span><span>${t("veryWell")}</span></div></div>
+    <div class="q"><label for="comment">${t("rComment")}</label><textarea id="comment" data-k="comment">${esc(S.comment)}</textarea></div>
+  </div>`; },
+ draw:()=>`
+  <span class="eyebrow">${t("drEyebrow")}</span><h2>${t("drTitle")}</h2>
+  <p class="muted">${t("drSub",{date:kn(CONFIG.DRAW_DATE),page:esc(CONFIG.DRAW_PAGE)})}</p>
+  ${info("dr")}
+  <div class="prizes">${CONFIG.PRIZES.map(p=>`<div class="prize"><span class="ic" aria-hidden="true">${p.icon}</span><b>${esc(L(p))}</b><span>${t("winners",{n:p.qty})}</span></div>`).join("")}</div>
+  <div class="card">
+    <div class="q"><label for="contact">${t("contact")}</label><input type="tel" id="contact" data-k="contact" value="${esc(S.contact)}" placeholder="${t("contactPh")}"></div>
+    <label class="check"><input type="checkbox" data-check="drawOk" ${S.drawOk?"checked":""}><span>${t("drOk")}</span></label>
+  </div>`,
+ thanks:()=>`<div class="center">
+  <div class="mascot" style="position:relative">
+    ${CONFIG.THANKS_GIF? `<div class="bubble">${t("tCat")}</div><img class="gif" src="${esc(CONFIG.THANKS_GIF)}" alt="${t("tCat")}">` : `<div class="bubble">${t("tCat")}</div>${cat(190)}`}
+    <div class="hearts" aria-hidden="true"><span>♥</span><span>♥</span><span>♥</span><span>♥</span></div>
+  </div>
+  <h1>${t("tTitle")}</h1>
+  <p>${t("tText")}</p>
+  <div class="card" style="text-align:left;width:100%"><p>${S.contact.trim()&&S.drawOk? t("tIn",{page:esc(CONFIG.DRAW_PAGE),date:kn(CONFIG.DRAW_DATE)}) : t("tOut")}</p>
+  <p class="muted">${t("tShare")}</p></div></div>`
+};
+
+/* ===== Checks before moving on ===== */
+function check(id){
+  const need = k => (err=k, false);
+  switch(id){
+   case "consent": return S.consent || need(t("eConsent"));
+   case "about": return (S.role==="worker" || (S.role==="student" && S.yr2)) || need(t(S.role? "eYear2" : "ePick"));
+   case "background": if(S.role==="student"){ const miss=[]; if(!String(S.univ||"").trim()) miss.push(t("univ")); if(!S.major) miss.push(t("major")); if(!S.year) miss.push(t("yearStudy"));
+       if(miss.length) return need(t("eMissing",{f:miss.join(", ")}));
+       if(S.major==="other"&&!S.majorOther.trim()) return need(t("eMajor")); return true; }
+     if(!S.degreeMajor||!S.job||!S.yearsWork||!S.related) return need(t("eBgW"));
+     if(S.degreeMajor==="other"&&!S.degreeOther.trim()) return need(t("eMajor"));
+     if(S.job==="other"&&!S.jobOther.trim()) return need(t("eJob")); return true;
+   case "satisfaction": return (S.sat&&S.again&&S.changed) || need(t("eSat3"));
+   case "careers":
+     if(!S.dreamMode) return need(t("eDream"));
+     if(S.dreamMode==="job"){ if(!S.dream) return need(t("eDream")); if(S.dream==="custom"&&!S.fields.length) return need(t("eFieldC")); return true; }
+     return (S.fields.length||S.fieldNone) || need(t("eField"));
+   case "pers": if(!S.persMode) return need(t("ePick")); if(S.persMode==="type"&&!parseType(S.persType)) return need(t("eType")); return true;
+   case "grades": return (!SUBJECTS.some(([k])=>!S.grades[k]) && S.track) || need(t("eGrades"));
+   case "results": return S.fit || need(t("eFit"));
+   case "draw": if(S.contact.trim() && !S.drawOk) return need(t("eDraw")); return true;
+  }
+  if(id.startsWith("b1_")){ const left=B1_PAGES[+id.slice(3)].filter(x=>!S.b1[x]).length; return !left || need(t("eLeft",{n:left})); }
+  if(id.startsWith("quiz_")){ const left=QUIZ_PAGES[+id.slice(5)].filter(x=>!S.quiz[x]).length; return !left || need(t("eLeft",{n:left})); }
+  return true;
+}
+
+/* ===== Render ===== */
+function render(){
+  const list=screens(); cur=Math.min(cur,list.length-1); const id=list[cur];
+  document.documentElement.lang = S.lang==="km"? "km" : "en";
+  const body = id.startsWith("b1_")? R.b1(+id.slice(3)) : id.startsWith("quiz_")? R.quiz(+id.slice(5)) : R[id]();
+  const terminal = id==="thanks"||id==="ineligible"||id==="lang";
+  const nextLabel = id==="consent"?t("start"): id==="self"?t("seeResults"): id==="draw"?t("finish"): t("next");
+  document.getElementById("app").innerHTML = body + (terminal? "" : `
+    ${err?`<p class="err" id="errBox" role="alert">${err}</p>`:""}
+    <div class="nav">${cur>0&&id!=="results"&&id!=="draw"?`<button type="button" class="btn" data-act="back">${t("back")}</button>`:""}
+      <button type="button" class="btn primary" data-act="next">${nextLabel}</button></div>`);
+  const steps=list.length-1, pct=Math.round(100*cur/steps);
+  document.getElementById("prog").style.width = pct+"%";
+  document.getElementById("thumb").style.left = pct+"%";
+  const showStep = !(id==="lang"||id==="thanks"||id==="ineligible");
+  document.getElementById("step").textContent = showStep? t("step",{a:cur,b:list.length-2}) : "";
+  const lb=document.getElementById("langBtn"); lb.hidden = id==="lang"; lb.textContent = S.lang? t("otherLang") : "";
+  const pv=document.getElementById("previewNote"); pv.hidden = !!CONFIG.ENDPOINT; pv.textContent = t("preview");
+  S._pop=null;
+}
+function rerenderKeepScroll(){ const y=window.scrollY; render(); window.scrollTo({top:y}); }
+function go(delta){ cur=Math.max(0,cur+delta); render(); window.scrollTo({top:0}); }
+function syncFields(){ // re-read typed fields in case autofill or a keyboard didn't send an update
+  document.querySelectorAll("#app [data-k]").forEach(el=>put(el.dataset.k, el.value)); }
+function next(){
+  syncFields();
+  const list=screens(), id=list[cur]; err="";
+  if(!check(id)){ render(); const e=document.getElementById("errBox"); if(e) e.scrollIntoView({block:"center",behavior:"smooth"}); return; }
+  if(id==="self"){ S.scores=score(); if(!S.sentResp){ S.sentResp=true; send("Responses",responseRow(S.scores)); } }
+  if(id==="results"){ send("Feedback",{response_id:S.id, submitted_at:new Date().toISOString(), fit_rating:S.fit, comment:S.comment}); }
+  if(id==="draw" && S.contact.trim() && S.drawOk){ send("Draw",{response_id:S.id, submitted_at:new Date().toISOString(), contact:S.contact.trim()}); }
+  go(1);
+}
+
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  if(b.dataset.lang){ S.lang=b.dataset.lang; return go(1); }
+  if(b.dataset.act==="lang"){ S.lang = S.lang==="km"? "en" : "km"; err=""; return rerenderKeepScroll(); }
+  if(b.dataset.act==="next") return next();
+  if(b.dataset.act==="back"){ err=""; return go(-1); }
+  if(b.dataset.pick){ S.dream=b.dataset.pick; S.dreamText=""; S.jobQ=""; S.fields=[]; err=""; return rerenderKeepScroll(); }
+  if(b.dataset.act==="clearDream"){ S.dream=null; S.dreamText=""; S.fields=[]; err=""; return rerenderKeepScroll(); }
+  if(b.dataset.act==="addDream"){ const q=S.jobQ.trim(); if(!q) return; S.dream="custom"; S.dreamText=q; S.jobQ=""; S.fields=[]; err=""; return rerenderKeepScroll(); }
+  if(b.dataset.field){ const f=b.dataset.field; err="";
+    if(f==="none"){ S.fieldNone=!S.fieldNone; if(S.fieldNone) S.fields=[]; }
+    else { const i=S.fields.indexOf(f); S.fieldNone=false;
+      if(i>=0) S.fields.splice(i,1); else if(S.fields.length>=2) err=t("eField2"); else S.fields.push(f); }
+    return rerenderKeepScroll(); }
+  if(b.dataset.cat){ S.jobCat=b.dataset.cat; S.jobQ=""; const s=document.getElementById("jobSearch"); if(s) s.value=""; return updateCareers(); }
+  if(b.dataset.set){ syncFields(); const raw=b.dataset.v; const v=/^\d+$/.test(raw)? +raw : raw; const k=b.dataset.set; const prev=get(k);
+    const optional = k.startsWith("b2.") || k.startsWith("self.");   // tap again to clear an optional answer
+    put(k, (optional && prev===v)? undefined : v);
+    S._pop=k+"|"+raw; err=""; return rerenderKeepScroll(); }
+  if(b.dataset.toggle){ const key=b.dataset.toggle, arr=S[key], v=b.dataset.v, i=arr.indexOf(v);
+    if(i>=0) arr.splice(i,1); else arr.push(v);
+    err=""; return rerenderKeepScroll(); }
+});
+document.addEventListener("input",e=>{ const el=e.target;
+  if(el.id==="jobSearch"){ S.jobQ=el.value; return updateCareers(); }
+  if(el.dataset.k) put(el.dataset.k, el.value); });
+document.addEventListener("change",e=>{ const el=e.target;
+  if(el.dataset.check){ S[el.dataset.check]=el.checked; if(el.dataset.check==="persAlsoQuiz") rerenderKeepScroll(); }
+  if(el.tagName==="SELECT"&&el.dataset.k){ put(el.dataset.k, el.value); rerenderKeepScroll(); return; }
+  if(el.dataset.k) put(el.dataset.k, el.value); });
+document.addEventListener("compositionend",e=>{ const el=e.target; if(el.dataset&&el.dataset.k) put(el.dataset.k, el.value); });
+
+render();
+</script>
+</body>
+</html>
